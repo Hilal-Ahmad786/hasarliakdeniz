@@ -48,7 +48,10 @@ export default function Gallery() {
   const onTouchEnd = (e: React.TouchEvent) => {
     if (startX.current == null) return;
     const delta = e.changedTouches[0].clientX - startX.current;
-    if (Math.abs(delta) > 40) (delta < 0 ? next() : prev());
+    if (Math.abs(delta) > 40) {
+        if (delta < 0) next();
+        else prev();
+      }
     startX.current = null;
   };
 

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { cities } from "@/data/cities";
 import { Phone, Mail, MapPin, Shield, ExternalLink } from "lucide-react";
 
+
 // ---- EDIT THESE -------------------------------------------------------------
 const ORG_NAME = "Hasarlı Akdeniz";
 const PHONE_DISPLAY = "+90 X XXX XX XX";
@@ -82,12 +83,12 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-3 text-slate-100">Site</h3>
             <ul className="space-y-2 text-sm text-slate-300">
-              <li><Link href="/" className="hover:underline">Anasayfa</Link></li>
-              <li><Link href="/hakkimizda" className="hover:underline">Hakkımızda</Link></li>
-              <li><Link href="/iletisim" className="hover:underline">İletişim</Link></li>
-              <li><a href="/#process" className="hover:underline">Süreç</a></li>
-              <li><a href="/#trust" className="hover:underline">Güven</a></li>
-            </ul>
+  <li><Link href="/" className="hover:underline">Anasayfa</Link></li>
+  <li><Link href="/hakkimizda" className="hover:underline">Hakkımızda</Link></li>
+  <li><Link href="/iletisim" className="hover:underline">İletişim</Link></li>
+  <li><Link href="/#process" className="hover:underline">Süreç</Link></li>   {/* <- updated */}
+  <li><Link href="/#trust" className="hover:underline">Güven</Link></li>     {/* <- updated */}
+</ul>
           </div>
 
           {/* Hizmetler */}
@@ -113,11 +114,13 @@ export default function Footer() {
               ))}
             </ul>
             <div className="mt-3">
-              <a href="/#areas" className="text-xs text-slate-400 hover:underline">
-                Tüm şehirleri gör
-              </a>
-            </div>
+  <Link href="/#areas" className="text-xs text-slate-400 hover:underline">
+    Tüm şehirleri gör
+  </Link> {/* <- updated */}
+</div>
+
           </div>
+          
         </nav>
       </div>
 
