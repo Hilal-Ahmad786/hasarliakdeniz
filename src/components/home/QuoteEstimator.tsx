@@ -1,32 +1,30 @@
 "use client";
-import { estimateRange } from "@/lib/quote";
-import type { DamageArea } from "./DamageDiagram";
+
+type Range = { min: number; max: number };
+type NoteResult = { note: string };
+type Result = Range | NoteResult;
+
+function hasRange(x: Result | { min?: number; max?: number }): x is Range {
+  return typeof (x as any).min === "number" && typeof (x as any).max === "number";
+}
 
 export default function QuoteEstimator({
-  year,
-  areas,
-  market,
+  result,
 }: {
-  year: number | undefined;
-  areas: DamageArea[];
-  market?: number;
+  result: Result | undefined;
 }) {
-  if (!year) return null;
-  const r = estimateRange(year, areas, market);
+  if (!result) return null;
+
   return (
-    <div className="rounded-xl border p-3 bg-white">
-      <div className="text-sm text-slate-600">Anlık Ön Tahmin</div>
-      {"min" in r && "max" in r ? (
+    <section className="rounded-2xl border bg-white p-4">
+      {hasRange(result) ? (
         <div className="text-lg font-semibold text-slate-900">
-          ~ ₺{r.min.toLocaleString("tr-TR")} – ₺{r.max.toLocaleString("tr-TR")}
+          ~ ₺{result.min.toLocaleString("tr-TR")} – ₺{result.max.toLocaleString("tr-TR")}
           <span className="ml-2 text-xs text-slate-500">(yaklaşık)</span>
         </div>
       ) : (
-        <div className="text-lg font-semibold text-slate-900">
-          ~ %{Math.round(r.minFactor*100)} – %{Math.round(r.maxFactor*100)} piyasa değerinin
-        </div>
+        <p className="text-sm text-slate-600">{result.note}</p>
       )}
-      <p className="text-xs text-slate-500 mt-1">Kesin fiyat ekspertiz sonrası netleşir.</p>
-    </div>
+    </section>
   );
 }
