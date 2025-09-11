@@ -2,441 +2,272 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-import {
-  Menu,
-  X,
-  Phone,
-  ChevronDown,
-  MapPin,
-  Wrench,
-} from "lucide-react";
+import { useEffect, useState } from "react";
+import { Menu, X, Phone, MapPin, Wrench } from "lucide-react";
+import { cities } from "@/data/cities"; // already created earlier
 
-// ---- CONFIG (edit phone/WhatsApp + city & service slugs here) ---------------
-
+// ---- EDIT THESE -------------------------------------------------------------
+const BRAND_NAME = "Hasarlı Akdeniz";
+const PHONE_TEL = "+90XXXXXXXXXX";
 const PHONE_DISPLAY = "+90 X XXX XX XX";
-const PHONE_TEL = "+90XXXXXXXXXX";          // e.g., +905551112233
-const WHATSAPP_URL = "https://wa.me/90XXXXXXXXXX";
-
-type NavItem = { label: string; href: string };
-
-const SERVICES: NavItem[] = [
-  { label: "Hasarlı Araç Alan",        href: "/hizmetler/hasarli-arac-alan" },
-  { label: "Kazalı Araç Alan",         href: "/hizmetler/kazali-arac-alan" },
-  { label: "Hurda Araç Alan",          href: "/hizmetler/hurda-arac-alan" },
-  { label: "Pert Araç Alan",           href: "/hizmetler/pert-arac-alan" },
-  { label: "Yanmış Araç Alan",         href: "/hizmetler/yanmis-arac-alan" },
-  { label: "Motor Arızalı Araç Alan",  href: "/hizmetler/motor-arizali-arac-alan" },
-  { label: "Çekme Belgeli Araç Alan",  href: "/hizmetler/cekme-belgeli-arac-alan" },
-];
-
-// Akdeniz illeri + ek bölgeler (Gaziantep, Diyarbakır, Şanlıurfa, Mardin)
-const CITIES: NavItem[] = [
-  { label: "Antalya",       href: "/antalya" },
-  { label: "Adana",         href: "/adana" },
-  { label: "Mersin",        href: "/mersin" },
-  { label: "Hatay",         href: "/hatay" },
-  { label: "Osmaniye",      href: "/osmaniye" },
-  { label: "Kahramanmaraş", href: "/kahramanmaras" },
-  { label: "Isparta",       href: "/isparta" },
-  { label: "Burdur",        href: "/burdur" },
-  { label: "Gaziantep",     href: "/gaziantep" },
-  { label: "Diyarbakır",    href: "/diyarbakir" },
-  { label: "Şanlıurfa",     href: "/sanliurfa" },
-  { label: "Mardin",        href: "/mardin" },
-];
-
 // -----------------------------------------------------------------------------
 
+const SERVICES = [
+  { slug: "hasarli-arac-alan",       title: "Hasarlı Araç Alan" },
+  { slug: "kazali-arac-alan",        title: "Kazalı Araç Alan" },
+  { slug: "hurda-arac-alan",         title: "Hurda Araç Alan" },
+  { slug: "pert-arac-alan",          title: "Pert Araç Alan" },
+  { slug: "yanmis-arac-alan",        title: "Yanmış Araç Alan" },
+  { slug: "motor-arizali-arac-alan", title: "Motor Arızalı Araç Alan" },
+  { slug: "cekme-belgeli-arac-alan", title: "Çekme Belgeli Araç Alan" },
+];
+
 export default function Header() {
+  const [open, setOpen] = useState(false);           // drawer closed by default
+  const [svcOpen, setSvcOpen] = useState(true);      // group collapsed state (mobile)
+  const [cityOpen, setCityOpen] = useState(false);
   const pathname = usePathname();
-  const [openMobile, setOpenMobile] = useState(false);
-  const [openServices, setOpenServices] = useState(false);
-  const [openCities, setOpenCities] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
-  const servicesRef = useRef<HTMLDivElement | null>(null);
-  const citiesRef = useRef<HTMLDivElement | null>(null);
-
-  // sticky shadow after scroll
+  // lock body scroll when drawer is open (mobile)
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 6);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // close dropdowns on outside click / ESC
-  useEffect(() => {
-    function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") {
-        setOpenServices(false);
-        setOpenCities(false);
-        setOpenMobile(false);
-      }
+    if (open) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => { document.body.style.overflow = prev; };
     }
-    function onClick(e: MouseEvent) {
-      const t = e.target as Node;
-      if (
-        servicesRef.current &&
-        !servicesRef.current.contains(t)
-      ) setOpenServices(false);
-      if (
-        citiesRef.current &&
-        !citiesRef.current.contains(t)
-      ) setOpenCities(false);
-    }
-    document.addEventListener("keydown", onKey);
-    document.addEventListener("mousedown", onClick);
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.removeEventListener("mousedown", onClick);
-    };
-  }, []);
+  }, [open]);
 
-  const isActive = (href: string) =>
-    href === "/"
-      ? pathname === "/"
-      : pathname.startsWith(href);
+  // close drawer on route change
+  useEffect(() => { setOpen(false); }, [pathname]);
 
   return (
-    <header
-      className={`sticky top-0 z-50 bg-white/90 backdrop-blur border-b transition-shadow ${
-        scrolled ? "shadow-sm" : ""
-      }`}
-    >
-      {/* Top line */}
-      <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
+    <header className="sticky top-0 z-40 w-full bg-white/80 backdrop-blur border-b">
+      <div className="mx-auto max-w-7xl px-4 h-16 flex items-center justify-between">
         {/* Brand */}
-        <Link href="/" className="flex items-center gap-2">
-          <div
-            className="h-8 w-8 rounded-md"
+        <Link href="/" className="flex items-center gap-3">
+          <span
+            className="inline-block h-9 w-9 rounded-2xl"
             style={{ background: "#1e3a8a" }}
             aria-hidden
           />
-          <span className="font-semibold" style={{ color: "#1e3a8a" }}>
-            Hasarlı Akdeniz
+          <span className="font-semibold text-lg" style={{ color: "#1e3a8a" }}>
+            {BRAND_NAME}
           </span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-1">
-          <NavLink href="/" active={isActive("/")}>
+        <nav className="hidden md:flex items-center gap-6">
+          <Link href="/" className="text-slate-700 hover:text-slate-900 font-medium">
             Anasayfa
-          </NavLink>
+          </Link>
 
-          {/* Hizmetler (dropdown) */}
-          <div
-            className="relative"
-            ref={servicesRef}
-            onMouseEnter={() => setOpenServices(true)}
-            onMouseLeave={() => setOpenServices(false)}
-          >
-            <button
-              type="button"
-              aria-haspopup="menu"
-              aria-expanded={openServices}
-              onClick={() => setOpenServices((s) => !s)}
-              className={`inline-flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium ${
-                openServices ? "bg-slate-100" : "hover:bg-slate-100"
-              } ${isActive("/hizmetler") ? "text-[#1e3a8a]" : "text-slate-700"}`}
-            >
-              <Wrench className="h-4 w-4" />
-              Hizmetler
-              <ChevronDown className="h-4 w-4 opacity-70" />
+          {/* Hizmetler dropdown */}
+          <div className="group relative">
+            <button className="text-slate-700 hover:text-slate-900 font-medium inline-flex items-center gap-2">
+              <Wrench className="h-4 w-4" /> Hizmetler
             </button>
-
-            {openServices && (
-              <div
-                role="menu"
-                className="absolute left-0 mt-2 w-[380px] rounded-2xl border bg-white shadow-lg p-3 grid grid-cols-1 sm:grid-cols-2 gap-2"
-              >
-                {SERVICES.map((s) => (
-                  <Link
-                    key={s.href}
-                    href={s.href}
-                    className={`rounded-lg px-3 py-2 text-sm hover:bg-slate-50 ${
-                      isActive(s.href) ? "text-[#1e3a8a] font-semibold" : "text-slate-700"
-                    }`}
-                    role="menuitem"
-                  >
-                    {s.label}
-                  </Link>
-                ))}
-              </div>
-            )}
+            <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition
+                            absolute left-0 mt-3 w-72 rounded-2xl border bg-white shadow-lg p-2">
+              {SERVICES.map((s) => (
+                <Link
+                  key={s.slug}
+                  href={`/hizmetler/${s.slug}`}
+                  className="block rounded-xl px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
+                >
+                  {s.title}
+                </Link>
+              ))}
+            </div>
           </div>
 
-          <NavLink href="/hakkimizda" active={isActive("/hakkimizda")}>
+          {/* Bölgeler dropdown */}
+          <div className="group relative">
+            <button className="text-slate-700 hover:text-slate-900 font-medium inline-flex items-center gap-2">
+              <MapPin className="h-4 w-4" /> Bölgeler
+            </button>
+            <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition
+                            absolute left-0 mt-3 max-h-[60vh] w-80 overflow-auto rounded-2xl border bg-white shadow-lg p-2">
+              {cities.map((c) => (
+                <Link
+                  key={c.slug}
+                  href={`/${c.slug}`}
+                  className="block rounded-xl px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
+                >
+                  {c.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <Link href="/hakkimizda" className="text-slate-700 hover:text-slate-900 font-medium">
             Hakkımızda
-          </NavLink>
-
-          {/* Bölgeler (dropdown) */}
-          <div
-            className="relative"
-            ref={citiesRef}
-            onMouseEnter={() => setOpenCities(true)}
-            onMouseLeave={() => setOpenCities(false)}
-          >
-            <button
-              type="button"
-              aria-haspopup="menu"
-              aria-expanded={openCities}
-              onClick={() => setOpenCities((s) => !s)}
-              className={`inline-flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium ${
-                openCities ? "bg-slate-100" : "hover:bg-slate-100"
-              } ${isActive("/(marketing)") ? "text-[#1e3a8a]" : "text-slate-700"}`}
-            >
-              <MapPin className="h-4 w-4" />
-              Bölgeler
-              <ChevronDown className="h-4 w-4 opacity-70" />
-            </button>
-
-            {openCities && (
-              <div
-                role="menu"
-                className="absolute left-0 mt-2 w-[520px] max-h-[60vh] overflow-auto rounded-2xl border bg-white shadow-lg p-3 grid grid-cols-2 sm:grid-cols-3 gap-2"
-              >
-                {CITIES.map((c) => (
-                  <Link
-                    key={c.href}
-                    href={c.href}
-                    className={`rounded-lg px-3 py-2 text-sm hover:bg-slate-50 ${
-                      isActive(c.href) ? "text-[#1e3a8a] font-semibold" : "text-slate-700"
-                    }`}
-                    role="menuitem"
-                  >
-                    {c.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <NavLink href="/iletisim" active={isActive("/iletisim")}>
+          </Link>
+          <Link href="/iletisim" className="text-slate-700 hover:text-slate-900 font-medium">
             İletişim
-          </NavLink>
-        </nav>
+          </Link>
 
-        {/* Call actions */}
-        <div className="hidden lg:flex items-center gap-3">
           <a
             href={`tel:${PHONE_TEL}`}
-            className="font-semibold"
-            style={{ color: "#3b82f6" }}
-            aria-label={`Telefon: ${PHONE_DISPLAY}`}
-          >
-            {PHONE_DISPLAY}
-          </a>
-          <a
-            href={`tel:${PHONE_TEL}`}
-            className="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-white font-semibold"
+            className="ml-2 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-white font-semibold shadow"
             style={{ background: "#ea580c" }}
+            aria-label={`Hemen Ara: ${PHONE_DISPLAY}`}
           >
             <Phone className="h-4 w-4" />
-            Hemen Ara
+            Ara
           </a>
-        </div>
+        </nav>
 
-        {/* Mobile toggle */}
+        {/* Mobile burger */}
         <button
           type="button"
+          onClick={() => setOpen(true)}
+          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border"
           aria-label="Menüyü aç"
-          onClick={() => setOpenMobile(true)}
-          className="lg:hidden inline-flex items-center justify-center rounded-lg p-2 hover:bg-slate-100"
         >
-          <Menu className="h-6 w-6" />
+          <Menu className="h-5 w-5" />
         </button>
       </div>
 
-      {/* Mobile drawer */}
-      <div
-        className={`lg:hidden fixed inset-0 z-50 transition ${
-          openMobile ? "pointer-events-auto" : "pointer-events-none"
-        }`}
-        aria-hidden={!openMobile}
-      >
-        {/* backdrop */}
-        <div
-          className={`absolute inset-0 bg-black/20 transition-opacity ${
-            openMobile ? "opacity-100" : "opacity-0"
-          }`}
-          onClick={() => setOpenMobile(false)}
-        />
-        {/* panel */}
-        <aside
-          className={`absolute right-0 top-0 h-full w-[88%] max-w-sm bg-white shadow-xl border-l p-4 transition-transform ${
-            openMobile ? "translate-x-0" : "translate-x-full"
-          }`}
-          role="dialog"
-          aria-modal="true"
-        >
-          <div className="flex items-center justify-between">
-            <Link
-              href="/"
-              className="flex items-center gap-2"
-              onClick={() => setOpenMobile(false)}
-            >
-              <div
-                className="h-8 w-8 rounded-md"
-                style={{ background: "#1e3a8a" }}
-              />
-              <span className="font-semibold" style={{ color: "#1e3a8a" }}>
-                Hasarlı Akdeniz
-              </span>
-            </Link>
-            <button
-              type="button"
-              aria-label="Kapat"
-              onClick={() => setOpenMobile(false)}
-              className="rounded-lg p-2 hover:bg-slate-100"
-            >
-              <X className="h-6 w-6" />
-            </button>
-          </div>
-
-          <div className="mt-6 space-y-2">
-            <MobileLink href="/" onClick={() => setOpenMobile(false)} active={isActive("/")}>
-              Anasayfa
-            </MobileLink>
-
-            {/* Hizmetler accordion */}
-            <details className="rounded-xl border bg-white" open>
-              <summary className="flex items-center justify-between px-4 py-3 cursor-pointer">
-                <span className="inline-flex items-center gap-2">
-                  <Wrench className="h-4 w-4" />
-                  Hizmetler
+      {/* Mobile drawer (renders only when open) */}
+      {open && (
+        <div className="md:hidden fixed inset-0 z-50">
+          {/* Scrim */}
+          <button
+            type="button"
+            aria-label="Kapat"
+            onClick={() => setOpen(false)}
+            className="absolute inset-0 bg-slate-900/40"
+          />
+          {/* Panel */}
+          <aside
+            className="absolute right-0 top-0 h-full w-[86%] max-w-[420px] bg-white shadow-xl
+                       flex flex-col"
+            role="dialog"
+            aria-modal="true"
+          >
+            <div className="flex items-center justify-between h-16 px-4 border-b">
+              <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
+                <span
+                  className="inline-block h-9 w-9 rounded-2xl"
+                  style={{ background: "#1e3a8a" }}
+                  aria-hidden
+                />
+                <span className="font-semibold text-lg" style={{ color: "#1e3a8a" }}>
+                  {BRAND_NAME}
                 </span>
-                <ChevronDown className="h-4 w-4 opacity-70" />
-              </summary>
-              <div className="p-2">
-                {SERVICES.map((s) => (
-                  <MobileLink
-                    key={s.href}
-                    href={s.href}
-                    onClick={() => setOpenMobile(false)}
-                    active={isActive(s.href)}
-                  >
-                    {s.label}
-                  </MobileLink>
-                ))}
+              </Link>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-lg border"
+                aria-label="Kapat"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+              <Link
+                href="/"
+                className="block rounded-2xl bg-slate-100 px-4 py-3 font-semibold text-[#1e3a8a]"
+                onClick={() => setOpen(false)}
+              >
+                Anasayfa
+              </Link>
+
+              {/* Hizmetler group */}
+              <div className="rounded-2xl border p-4">
+                <button
+                  type="button"
+                  className="flex w-full items-center justify-between font-semibold"
+                  onClick={() => setSvcOpen((s) => !s)}
+                >
+                  <span className="inline-flex items-center gap-2">
+                    <Wrench className="h-5 w-5 text-slate-500" />
+                    Hizmetler
+                  </span>
+                  <span className="text-slate-400">{svcOpen ? "▾" : "▸"}</span>
+                </button>
+                {svcOpen && (
+                  <ul className="mt-3 space-y-4">
+                    {SERVICES.map((s) => (
+                      <li key={s.slug}>
+                        <Link
+                          href={`/hizmetler/${s.slug}`}
+                          className="block text-lg text-slate-800"
+                          onClick={() => setOpen(false)}
+                        >
+                          {s.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
-            </details>
 
-            <MobileLink
-              href="/hakkimizda"
-              onClick={() => setOpenMobile(false)}
-              active={isActive("/hakkimizda")}
-            >
-              Hakkımızda
-            </MobileLink>
+              {/* Hakkımızda */}
+              <Link
+                href="/hakkimizda"
+                className="block rounded-2xl border px-4 py-3 text-slate-800"
+                onClick={() => setOpen(false)}
+              >
+                Hakkımızda
+              </Link>
 
-            {/* Bölgeler accordion */}
-            <details className="rounded-xl border bg-white">
-              <summary className="flex items-center justify-between px-4 py-3 cursor-pointer">
-                <span className="inline-flex items-center gap-2">
-                  <MapPin className="h-4 w-4" />
-                  Bölgeler
-                </span>
-                <ChevronDown className="h-4 w-4 opacity-70" />
-              </summary>
-              <div className="max-h-[40vh] overflow-auto p-2 grid grid-cols-1">
-                {CITIES.map((c) => (
-                  <MobileLink
-                    key={c.href}
-                    href={c.href}
-                    onClick={() => setOpenMobile(false)}
-                    active={isActive(c.href)}
-                  >
-                    {c.label}
-                  </MobileLink>
-                ))}
+              {/* Bölgeler group */}
+              <div className="rounded-2xl border p-4">
+                <button
+                  type="button"
+                  className="flex w-full items-center justify-between font-semibold"
+                  onClick={() => setCityOpen((s) => !s)}
+                >
+                  <span className="inline-flex items-center gap-2">
+                    <MapPin className="h-5 w-5 text-slate-500" />
+                    Bölgeler
+                  </span>
+                  <span className="text-slate-400">{cityOpen ? "▾" : "▸"}</span>
+                </button>
+                {cityOpen && (
+                  <ul className="mt-3 grid grid-cols-1 gap-3 max-h-[50vh] overflow-auto pr-1">
+                    {cities.map((c) => (
+                      <li key={c.slug}>
+                        <Link
+                          href={`/${c.slug}`}
+                          className="block rounded-xl px-3 py-2 text-slate-800 hover:bg-slate-50"
+                          onClick={() => setOpen(false)}
+                        >
+                          {c.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
-            </details>
 
-            <MobileLink
-              href="/iletisim"
-              onClick={() => setOpenMobile(false)}
-              active={isActive("/iletisim")}
-            >
-              İletişim
-            </MobileLink>
-          </div>
+              {/* İletişim */}
+              <Link
+                href="/iletisim"
+                className="block rounded-2xl border px-4 py-3 text-slate-800"
+                onClick={() => setOpen(false)}
+              >
+                İletişim
+              </Link>
+            </div>
 
-          <div className="mt-6 grid gap-2">
-            <a
-              href={`tel:${PHONE_TEL}`}
-              className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-white font-semibold"
-              style={{ background: "#ea580c" }}
-            >
-              <Phone className="h-5 w-5" />
-              Hemen Ara
-            </a>
-            <a
-              href={WHATSAPP_URL}
-              className="inline-flex items-center justify-center rounded-xl px-4 py-3 font-semibold border"
-              style={{ borderColor: "#1e3a8a", color: "#1e3a8a" }}
-            >
-              WhatsApp
-            </a>
-          </div>
-
-          <p className="mt-3 text-center text-xs text-slate-500">
-            Hafta içi 09:00–19:00 • Cumartesi 10:00–17:00
-          </p>
-        </aside>
-      </div>
+            <div className="border-t p-4">
+              <a
+                href={`tel:${PHONE_TEL}`}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-white font-semibold shadow"
+                style={{ background: "#ea580c" }}
+                aria-label={`Hemen Ara: ${PHONE_DISPLAY}`}
+              >
+                <Phone className="h-4 w-4" />
+                Hemen Ara
+              </a>
+            </div>
+          </aside>
+        </div>
+      )}
     </header>
-  );
-}
-
-// ---- Subcomponents -----------------------------------------------------------
-
-function NavLink({
-  href,
-  active,
-  children,
-}: {
-  href: string;
-  active?: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <Link
-      href={href}
-      className={`px-3 py-2 rounded-lg text-sm font-medium ${
-        active
-          ? "text-[#1e3a8a] bg-slate-100"
-          : "text-slate-700 hover:bg-slate-100"
-      }`}
-    >
-      {children}
-    </Link>
-  );
-}
-
-function MobileLink({
-  href,
-  onClick,
-  active,
-  children,
-}: {
-  href: string;
-  onClick?: () => void;
-  active?: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <Link
-      href={href}
-      onClick={onClick}
-      className={`block rounded-lg px-4 py-3 text-sm ${
-        active
-          ? "bg-slate-100 text-[#1e3a8a] font-semibold"
-          : "text-slate-700 hover:bg-slate-50"
-      }`}
-    >
-      {children}
-    </Link>
   );
 }
