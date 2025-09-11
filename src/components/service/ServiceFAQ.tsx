@@ -1,15 +1,15 @@
 // src/components/service/ServiceFAQ.tsx
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { MessageCircle, Phone, Link as LinkIcon, ChevronDown, ChevronUp, Check, X } from "lucide-react";
 import { buildWhatsAppLink, formatPhoneDisplayTR } from "@/lib/links";
 
 export type FAQItem = {
   q: string;
   a: string | React.ReactNode;
-  id?: string;       // optional stable id (otherwise derived from q)
-  category?: string; // optional category label
+  id?: string;
+  category?: string;
 };
 
 export default function ServiceFAQ({
@@ -20,9 +20,9 @@ export default function ServiceFAQ({
   showSearch = true,
   groupByCategory = true,
   autoOpenHash = true,
-  phone,                 // e.g. "0 (536) 929 86 06XX"
+  phone,
   whatsappMessage = "Merhaba, bir sorum var.",
-  onFeedback,            // receive micro-feedback events
+  onFeedback,
 }: {
   items: FAQItem[];
   defaultOpen?: number;
@@ -40,8 +40,8 @@ export default function ServiceFAQ({
   const [hashTarget, setHashTarget] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Normalize + slugify for TR characters
-  const norm = (s: string) =>
+  // Normalize + slugify (TR-safe)
+  const norm = useCallback((s: string) => (
     s
       .toLowerCase()
       .replace(/[çÇ]/g, "c")
@@ -49,11 +49,14 @@ export default function ServiceFAQ({
       .replace(/[ıİ]/g, "i")
       .replace(/[öÖ]/g, "o")
       .replace(/[şŞ]/g, "s")
-      .replace(/[üÜ]/g, "u");
-  const slugify = (s: string) =>
+      .replace(/[üÜ]/g, "u")
+  ), []);
+
+  const slugify = useCallback((s: string) => (
     norm(s)
       .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "");
+      .replace(/(^-|-$)/g, "")
+  ), [norm]);
 
   // Decorate items with ids
   const withIds = useMemo(
@@ -62,7 +65,7 @@ export default function ServiceFAQ({
         ...it,
         id: it.id || slugify(it.q),
       })),
-    [items]
+    [items, slugify]
   );
 
   // Filter by query
@@ -70,7 +73,7 @@ export default function ServiceFAQ({
     if (!query.trim()) return withIds;
     const needle = norm(query.trim());
     return withIds.filter((it) => norm(it.q).includes(needle) || (typeof it.a === "string" && norm(it.a).includes(needle)));
-  }, [withIds, query]);
+  }, [withIds, query, norm]);
 
   // Group (optional)
   const groups = useMemo(() => {
@@ -96,12 +99,9 @@ export default function ServiceFAQ({
     if (!hashTarget) return;
     const el = document.getElementById(hashTarget);
     if (el) {
-      // open <details> if present
       const details = el.closest("details");
       if (details && !details.open) (details as HTMLDetailsElement).open = true;
-      // smooth scroll
       el.scrollIntoView({ behavior: "smooth", block: "start" });
-      // brief highlight
       el.classList.add("ring-2", "ring-[#1e3a8a]/40", "rounded-md");
       const t = setTimeout(() => {
         el.classList.remove("ring-2", "ring-[#1e3a8a]/40", "rounded-md");
@@ -277,7 +277,6 @@ function highlight(text: string, q: string, norm: (s: string) => string) {
 }
 
 function renderAnswer(ans: string, q: string, norm: (s: string) => string) {
-  // split into paragraphs by blank line or newline
   const parts = ans.split(/\n{2,}|\r?\n/).filter(Boolean);
   return parts.map((p, i) => (
     <p key={i} className="mb-2">
@@ -294,9 +293,7 @@ function CopyLinkButton({ id }: { id: string }) {
       await navigator.clipboard.writeText(url);
       setOk("copied");
       setTimeout(() => setOk("idle"), 1200);
-    } catch {
-      // ignore
-    }
+    } catch {}
   }
   return (
     <button
