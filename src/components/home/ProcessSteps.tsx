@@ -62,7 +62,7 @@ export default function ProcessSteps() {
             className="hidden md:block absolute top-12 left-0 right-0 h-0.5 bg-slate-200"
           />
 
-          {steps.map((s, idx) => (
+            {steps.map((s) => (
             <li key={s.id} className="relative">
               {/* connector dots (desktop) */}
               <div

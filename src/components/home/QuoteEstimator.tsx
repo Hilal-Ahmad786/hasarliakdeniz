@@ -4,15 +4,23 @@ type Range = { min: number; max: number };
 type NoteResult = { note: string };
 type Result = Range | NoteResult;
 
-function hasRange(x: Result | { min?: number; max?: number }): x is Range {
-  return typeof (x as any).min === "number" && typeof (x as any).max === "number";
+function isNumber(x: unknown): x is number {
+  return typeof x === "number";
 }
 
-export default function QuoteEstimator({
-  result,
-}: {
-  result: Result | undefined;
-}) {
+function hasRange(x: Result): x is Range {
+  // Use property presence + runtime number checks, no "any"
+  return (
+    x !== null &&
+    typeof x === "object" &&
+    "min" in x &&
+    "max" in x &&
+    isNumber((x as Record<string, unknown>).min) &&
+    isNumber((x as Record<string, unknown>).max)
+  );
+}
+
+export default function QuoteEstimator({ result }: { result?: Result }) {
   if (!result) return null;
 
   return (
