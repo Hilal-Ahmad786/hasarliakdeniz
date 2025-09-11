@@ -120,3 +120,29 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Accessibility & mobile ergonomics */
+button, a, input, textarea { touch-action: manipulation; }
+:focus-visible { outline: 3px solid rgba(16,185,129,.35); outline-offset: 2px; }
+
+/* Reusable input style for forms */
+.input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
+  padding: 0.75rem 1rem;
+  background: #fff;
+}
+.input:focus { outline: 2px solid rgba(16,185,129,.2); }
+
+button, a, input, textarea { touch-action: manipulation; }
+:focus-visible { outline: 3px solid rgba(59,130,246,.35); outline-offset: 2px; } /* blue focus */
+
+.input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
+  padding: 0.75rem 1rem;
+  background: #fff;
+}
+.input:focus { outline: 2px solid rgba(5,150,105,.2); } /* trust green */
