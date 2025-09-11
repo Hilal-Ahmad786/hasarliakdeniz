@@ -3,14 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, X, Phone, MapPin, Wrench } from "lucide-react";
-import { cities } from "@/data/cities"; // already created earlier
+import { Menu, X, Phone, MapPin, Wrench, MessageCircle } from "lucide-react";
+import { cities } from "@/data/cities";
 
-// ---- EDIT THESE -------------------------------------------------------------
 const BRAND_NAME = "Hasarlı Akdeniz";
 const PHONE_TEL = "+90XXXXXXXXXX";
 const PHONE_DISPLAY = "+90 X XXX XX XX";
-// -----------------------------------------------------------------------------
+const WHATSAPP_URL = "https://wa.me/90XXXXXXXXXX";
 
 const SERVICES = [
   { slug: "hasarli-arac-alan",       title: "Hasarlı Araç Alan" },
@@ -23,18 +22,17 @@ const SERVICES = [
 ];
 
 export default function Header() {
-  const [open, setOpen] = useState(false);           // drawer closed by default
-  const [svcOpen, setSvcOpen] = useState(true);      // group collapsed state (mobile)
+  const [open, setOpen] = useState(false);
+  const [svcOpen, setSvcOpen] = useState(false);
   const [cityOpen, setCityOpen] = useState(false);
   const pathname = usePathname();
 
   // lock body scroll when drawer is open (mobile)
   useEffect(() => {
-    if (open) {
-      const prev = document.body.style.overflow;
-      document.body.style.overflow = "hidden";
-      return () => { document.body.style.overflow = prev; };
-    }
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = prev; };
   }, [open]);
 
   // close drawer on route change
@@ -42,21 +40,18 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-40 w-full bg-white/80 backdrop-blur border-b">
-      <div className="mx-auto max-w-7xl px-4 h-16 flex items-center justify-between">
-        {/* Brand */}
+      {/* 3 columns: brand | center nav | right CTAs */}
+      <div className="mx-auto max-w-7xl px-4 h-16 grid grid-cols-[auto_1fr_auto] items-center gap-4">
+        {/* Brand (left) */}
         <Link href="/" className="flex items-center gap-3">
-          <span
-            className="inline-block h-9 w-9 rounded-2xl"
-            style={{ background: "#1e3a8a" }}
-            aria-hidden
-          />
+          <span className="inline-block h-9 w-9 rounded-2xl" style={{ background: "#1e3a8a" }} aria-hidden />
           <span className="font-semibold text-lg" style={{ color: "#1e3a8a" }}>
             {BRAND_NAME}
           </span>
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6">
+        {/* Desktop nav (center) */}
+        <nav className="hidden md:flex items-center justify-center gap-6">
           <Link href="/" className="text-slate-700 hover:text-slate-900 font-medium">
             Anasayfa
           </Link>
@@ -67,7 +62,7 @@ export default function Header() {
               <Wrench className="h-4 w-4" /> Hizmetler
             </button>
             <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition
-                            absolute left-0 mt-3 w-72 rounded-2xl border bg-white shadow-lg p-2">
+                            absolute left-1/2 -translate-x-1/2 mt-3 w-72 rounded-2xl border bg-white shadow-lg p-2">
               {SERVICES.map((s) => (
                 <Link
                   key={s.slug}
@@ -86,7 +81,7 @@ export default function Header() {
               <MapPin className="h-4 w-4" /> Bölgeler
             </button>
             <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition
-                            absolute left-0 mt-3 max-h-[60vh] w-80 overflow-auto rounded-2xl border bg-white shadow-lg p-2">
+                            absolute left-1/2 -translate-x-1/2 mt-3 max-h-[60vh] w-80 overflow-auto rounded-2xl border bg-white shadow-lg p-2">
               {cities.map((c) => (
                 <Link
                   key={c.slug}
@@ -105,30 +100,50 @@ export default function Header() {
           <Link href="/iletisim" className="text-slate-700 hover:text-slate-900 font-medium">
             İletişim
           </Link>
+        </nav>
 
+        {/* Right CTAs (desktop only) — aligned, no extra height */}
+        <div className="hidden md:flex items-center justify-end gap-3">
+          {/* Optional phone number text: uncomment if you want it visible
+          <a href={`tel:${PHONE_TEL}`} className="inline-flex items-center gap-2 text-[#1e3a8a] font-semibold"
+             aria-label={`Telefon: ${PHONE_DISPLAY}`}>
+            <Phone className="h-4 w-4" />
+            <span className="tracking-wide">{PHONE_DISPLAY}</span>
+          </a>
+          */}
           <a
             href={`tel:${PHONE_TEL}`}
-            className="ml-2 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-white font-semibold shadow"
+            className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-white font-semibold shadow-sm"
             style={{ background: "#ea580c" }}
             aria-label={`Hemen Ara: ${PHONE_DISPLAY}`}
           >
             <Phone className="h-4 w-4" />
-            Ara
+            Hemen Ara
           </a>
-        </nav>
+          <a
+            href={WHATSAPP_URL}
+            className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-white font-semibold shadow-sm"
+            style={{ background: "#059669" }}
+            aria-label="WhatsApp ile yazın"
+            target="_blank" rel="noopener noreferrer"
+          >
+            <MessageCircle className="h-4 w-4" />
+            WhatsApp
+          </a>
+        </div>
 
-        {/* Mobile burger */}
+        {/* Mobile burger (only visible on small screens) */}
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border"
+          className="md:hidden justify-self-end inline-flex h-10 w-10 items-center justify-center rounded-lg border"
           aria-label="Menüyü aç"
         >
           <Menu className="h-5 w-5" />
         </button>
       </div>
 
-      {/* Mobile drawer (renders only when open) */}
+      {/* Mobile drawer */}
       {open && (
         <div className="md:hidden fixed inset-0 z-50">
           {/* Scrim */}
@@ -140,21 +155,14 @@ export default function Header() {
           />
           {/* Panel */}
           <aside
-            className="absolute right-0 top-0 h-full w-[86%] max-w-[420px] bg-white shadow-xl
-                       flex flex-col"
-            role="dialog"
-            aria-modal="true"
+            className="absolute right-0 top-0 h-dvh w-[86%] max-w-[420px] bg-white shadow-xl
+                       flex flex-col pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]"
+            role="dialog" aria-modal="true"
           >
             <div className="flex items-center justify-between h-16 px-4 border-b">
               <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-                <span
-                  className="inline-block h-9 w-9 rounded-2xl"
-                  style={{ background: "#1e3a8a" }}
-                  aria-hidden
-                />
-                <span className="font-semibold text-lg" style={{ color: "#1e3a8a" }}>
-                  {BRAND_NAME}
-                </span>
+                <span className="inline-block h-9 w-9 rounded-2xl" style={{ background: "#1e3a8a" }} aria-hidden />
+                <span className="font-semibold text-lg" style={{ color: "#1e3a8a" }}>{BRAND_NAME}</span>
               </Link>
               <button
                 type="button"
@@ -175,7 +183,7 @@ export default function Header() {
                 Anasayfa
               </Link>
 
-              {/* Hizmetler group */}
+              {/* Hizmetler */}
               <div className="rounded-2xl border p-4">
                 <button
                   type="button"
@@ -183,8 +191,7 @@ export default function Header() {
                   onClick={() => setSvcOpen((s) => !s)}
                 >
                   <span className="inline-flex items-center gap-2">
-                    <Wrench className="h-5 w-5 text-slate-500" />
-                    Hizmetler
+                    <Wrench className="h-5 w-5 text-slate-500" /> Hizmetler
                   </span>
                   <span className="text-slate-400">{svcOpen ? "▾" : "▸"}</span>
                 </button>
@@ -205,7 +212,6 @@ export default function Header() {
                 )}
               </div>
 
-              {/* Hakkımızda */}
               <Link
                 href="/hakkimizda"
                 className="block rounded-2xl border px-4 py-3 text-slate-800"
@@ -214,7 +220,7 @@ export default function Header() {
                 Hakkımızda
               </Link>
 
-              {/* Bölgeler group */}
+              {/* Bölgeler */}
               <div className="rounded-2xl border p-4">
                 <button
                   type="button"
@@ -222,8 +228,7 @@ export default function Header() {
                   onClick={() => setCityOpen((s) => !s)}
                 >
                   <span className="inline-flex items-center gap-2">
-                    <MapPin className="h-5 w-5 text-slate-500" />
-                    Bölgeler
+                    <MapPin className="h-5 w-5 text-slate-500" /> Bölgeler
                   </span>
                   <span className="text-slate-400">{cityOpen ? "▾" : "▸"}</span>
                 </button>
@@ -244,7 +249,6 @@ export default function Header() {
                 )}
               </div>
 
-              {/* İletişim */}
               <Link
                 href="/iletisim"
                 className="block rounded-2xl border px-4 py-3 text-slate-800"
@@ -254,15 +258,26 @@ export default function Header() {
               </Link>
             </div>
 
-            <div className="border-t p-4">
+            {/* Drawer CTAs fixed at bottom with safe-area padding */}
+            <div className="border-t p-4 pb-[calc(env(safe-area-inset-bottom)+1rem)] flex flex-wrap gap-3">
               <a
                 href={`tel:${PHONE_TEL}`}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-white font-semibold shadow"
+                className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl px-4 py-3 text-white font-semibold shadow-sm"
                 style={{ background: "#ea580c" }}
                 aria-label={`Hemen Ara: ${PHONE_DISPLAY}`}
               >
-                <Phone className="h-4 w-4" />
+                <Phone className="h-5 w-5" />
                 Hemen Ara
+              </a>
+              <a
+                href={WHATSAPP_URL}
+                className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl px-4 py-3 text-white font-semibold shadow-sm"
+                style={{ background: "#059669" }}
+                aria-label="WhatsApp ile yazın"
+                target="_blank" rel="noopener noreferrer"
+              >
+                <MessageCircle className="h-5 w-5" />
+                WhatsApp
               </a>
             </div>
           </aside>
