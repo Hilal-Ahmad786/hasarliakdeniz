@@ -134,6 +134,8 @@ export default function Footer() {
             <Link href="/kvkk" className="hover:underline">KVKK Aydınlatma</Link>
             <Link href="/cerez-politikasi" className="hover:underline">Çerez Politikası</Link>
             <Link href="/kullanim-sartlari" className="hover:underline">Kullanım Şartları</Link>
+            <Link  href="/kvkk" className="hover:underline">KVKK Aydınlatma Metni</Link>
+
             <span className="opacity-80">MERSİS: {MERSIS_NUMBER}</span>
             <span className="opacity-80">Vergi No: {VERGI_NO}</span>
           </div>

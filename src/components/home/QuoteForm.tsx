@@ -155,11 +155,14 @@ export default function QuoteForm() {
       </div>
 
       <label className="flex items-start gap-2 text-sm text-slate-700">
-        <input type="checkbox" {...register("consent")} className="mt-1" />
-        <span>
-          KVKK Aydınlatma Metnini okudum ve kişisel verilerimin ön değerlendirme için işlenmesine onay veriyorum.
-        </span>
-      </label>
+  <input type="checkbox" {...register("consent")} className="mt-1" />
+  <span>
+    <a href="/kvkk" className="text-[#1e3a8a] underline underline-offset-2" target="_blank" rel="noopener noreferrer">
+      KVKK Aydınlatma Metni
+    </a>
+    ’ni okudum ve kişisel verilerimin ön değerlendirme için işlenmesine onay veriyorum.
+  </span>
+</label>
 
       <div className="flex flex-wrap gap-3">
         <button
