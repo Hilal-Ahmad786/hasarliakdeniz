@@ -11,7 +11,7 @@ import RelatedServices from "@/components/service/RelatedServices";
 import { getService, serviceSlugs } from "@/data/services";
 import { buildWhatsAppLink } from "@/lib/links";
 
-const PHONE_TEL = "+90XXXXXXXXXX";
+const PHONE_TEL = "+905369298606";
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "";
 
 // ---- SSG params -------------------------------------------------------------

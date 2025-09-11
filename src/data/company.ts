@@ -1,8 +1,8 @@
 // src/data/company.ts
 export const COMPANY = {
     name: "Hasarlı Akdeniz",
-    phoneTel: "+90XXXXXXXXXX",         // E.164 format
-    phoneDisplay: "+90 X XXX XX XX",   // Human-friendly
+    phoneTel: "0 (536) 929 86 06XX",         // E.164 format
+    phoneDisplay: "0 (536) 929 86 06",   // Human-friendly
     whatsapp: "https://wa.me/90XXXXXXXXXX",
     email: "info@example.com",         // optional - update or leave empty
     address: {

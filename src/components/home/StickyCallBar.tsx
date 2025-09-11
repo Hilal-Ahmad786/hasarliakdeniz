@@ -12,7 +12,7 @@ export default function StickyCallBar() {
             <div className="text-slate-900 font-semibold">Hemen Bizi Arayın</div>
             <div className="text-slate-600 text-xs">Telefonla hızlı yönlendirme</div>
           </div>
-          <a href="tel:+90XXXXXXXXXX" className="rounded-xl px-4 py-2 text-white font-semibold" style={{ background: "#ea580c" }}>
+          <a href="tel:0 (536) 929 86 06XX" className="rounded-xl px-4 py-2 text-white font-semibold" style={{ background: "#ea580c" }}>
             Ara
           </a>
         </div>

@@ -20,7 +20,7 @@ export default function ServiceFAQ({
   showSearch = true,
   groupByCategory = true,
   autoOpenHash = true,
-  phone,                 // e.g. "+90XXXXXXXXXX"
+  phone,                 // e.g. "0 (536) 929 86 06XX"
   whatsappMessage = "Merhaba, bir sorum var.",
   onFeedback,            // receive micro-feedback events
 }: {

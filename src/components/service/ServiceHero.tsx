@@ -16,7 +16,7 @@ export type ServiceHeroProps = {
   title: string;
   short: string;
   desc: string;
-  phone: string;     // E.164 (e.g. "+90XXXXXXXXXX")
+  phone: string;     // E.164 (e.g. "0 (536) 929 86 06XX")
   whatsapp?: string; // optional direct WA link; otherwise we build it
 };
 

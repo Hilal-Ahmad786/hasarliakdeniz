@@ -6,8 +6,8 @@ import { cities } from "@/data/cities";
 import { Phone, MapPin, Search } from "lucide-react";
 
 // ---- EDIT THESE (fallback for cities without per-city phone) -----------------
-const DEFAULT_PHONE_DISPLAY = "+90 X XXX XX XX";
-const DEFAULT_PHONE_TEL = "+90XXXXXXXXXX";
+const DEFAULT_PHONE_DISPLAY = "0 (536) 929 86 06";
+const DEFAULT_PHONE_TEL = "+905369298606";
 // -----------------------------------------------------------------------------
 
 export default function ServiceAreas() {

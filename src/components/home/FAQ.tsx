@@ -7,9 +7,9 @@ import {
 } from "lucide-react";
 
 // ---- EDIT THESE -------------------------------------------------------------
-const PHONE_DISPLAY = "+90 X XXX XX XX";
-const PHONE_TEL = "+90XXXXXXXXXX";                 // e.g., +905551112233
-const WHATSAPP_URL = "https://wa.me/90XXXXXXXXXX"; // e.g., https://wa.me/905551112233
+const PHONE_DISPLAY = "0 (536) 929 86 06";
+const PHONE_TEL = "+905369298606";                 // e.g., +905551112233
+const WHATSAPP_URL = "https://wa.me/905369298606"; // e.g., https://wa.me/905369298606
 // -----------------------------------------------------------------------------
 
 type QA = {

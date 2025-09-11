@@ -5,8 +5,8 @@ import { Phone, Mail, MapPin, Shield, ExternalLink } from "lucide-react";
 
 // ---- EDIT THESE -------------------------------------------------------------
 const ORG_NAME = "Hasarlı Akdeniz";
-const PHONE_DISPLAY = "+90 X XXX XX XX";
-const PHONE_TEL = "+90XXXXXXXXXX";                // e.g. +905551112233
+const PHONE_DISPLAY = "0 (536) 929 86 06";
+const PHONE_TEL = "+905369298606";                // e.g. +905551112233
 const EMAIL = "info@ornek.com";
 const ADDRESS_LINE_1 = "Mahalle / Cadde / No";
 const ADDRESS_LINE_2 = "İlçe, Antalya";

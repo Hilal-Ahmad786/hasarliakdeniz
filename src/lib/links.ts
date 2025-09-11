@@ -6,7 +6,7 @@ export function buildWhatsAppLink(phoneE164: string, message: string) {
   }
   
   export function formatPhoneDisplayTR(phoneE164: string) {
-    // accepts +90XXXXXXXXXX -> +90 XXX XXX XX XX (best-effort)
+    // accepts 0 (536) 929 86 06XX -> +90 XXX XXX XX XX (best-effort)
     const d = phoneE164.replace(/[^\d+]/g, "");
     if (!d.startsWith("+90")) return phoneE164;
     const rest = d.slice(3);

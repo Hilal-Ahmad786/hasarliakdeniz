@@ -7,9 +7,9 @@ import { Menu, X, Phone, MapPin, Wrench, MessageCircle } from "lucide-react";
 import { cities } from "@/data/cities";
 
 const BRAND_NAME = "Hasarlı Akdeniz";
-const PHONE_TEL = "+90XXXXXXXXXX";
-const PHONE_DISPLAY = "+90 X XXX XX XX";
-const WHATSAPP_URL = "https://wa.me/90XXXXXXXXXX";
+const PHONE_TEL = "+905369298606";
+const PHONE_DISPLAY = "0 (536) 929 86 06";
+const WHATSAPP_URL = "https://wa.me/905369298606";
 
 const SERVICES = [
   { slug: "hasarli-arac-alan",       title: "Hasarlı Araç Alan" },

@@ -13,7 +13,7 @@ export default function ContactBand({
 }: {
   title?: string;
   subtitle?: string;
-  phone: string;              // E.164, e.g. "+90XXXXXXXXXX"
+  phone: string;              // E.164, e.g. "0 (536) 929 86 06XX"
   whatsappMessage?: string;   // prefilled WhatsApp text
   showHours?: boolean;
   note?: string;

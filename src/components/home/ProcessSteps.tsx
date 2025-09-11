@@ -1,9 +1,9 @@
 import { Phone, Images, ClipboardCheck, Stamp, Truck } from "lucide-react";
 
 // ---- EDIT THESE -------------------------------------------------------------
-const PHONE_DISPLAY = "+90 X XXX XX XX";
-const PHONE_TEL = "+90XXXXXXXXXX";
-const WHATSAPP_URL = "https://wa.me/90XXXXXXXXXX";
+const PHONE_DISPLAY = "0 (536) 929 86 06";
+const PHONE_TEL = "+905369298606";
+const WHATSAPP_URL = "https://wa.me/905369298606";
 // -----------------------------------------------------------------------------
 
 export default function ProcessSteps() {
