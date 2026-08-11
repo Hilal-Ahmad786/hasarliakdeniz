@@ -1,24 +1,41 @@
+import type { Metadata } from "next";
+import { Manrope } from "next/font/google";
+import { siteConfig } from "@/config/site";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import FloatContactButtons from "@/components/layout/FloatContactButtons";
 
-export const metadata = {
-  title: "Hasarlı Araç Alımı – Akdeniz Bölgesi",
-  description: "Akdeniz’de hasarlı/kazalı araçlarınızı kurumsal ve şeffaf süreçle satın alıyoruz.",
+const manrope = Manrope({
+  subsets: ["latin", "latin-ext"], // latin-ext covers Turkish characters
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-manrope",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.domain),
+  title: {
+    default: `${siteConfig.brandName} — Hasarlı Araç Alımı`,
+    template: `%s | ${siteConfig.brandName}`,
+  },
+  description:
+    "Hasarlı, kazalı, pert, arızalı, yanmış, sel hasarlı ve hurda araçlarınız için Akdeniz Bölgesi geneli hızlı ve güvenilir değerlendirme.",
+  applicationName: siteConfig.brandName,
+  formatDetection: { telephone: true },
+  openGraph: {
+    type: "website",
+    locale: "tr_TR",
+    siteName: siteConfig.brandName,
+    url: siteConfig.domain,
+  },
+  twitter: { card: "summary_large_image" },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="tr">
-      <body className="min-h-screen bg-white text-slate-900 antialiased">
-        <div className="flex min-h-screen flex-col">
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
-        {/* floating call & WhatsApp buttons */}
-        <FloatContactButtons />
+    <html lang="tr" className={manrope.variable} suppressHydrationWarning>
+      <body className="min-h-screen antialiased" suppressHydrationWarning>
+        {children}
       </body>
     </html>
   );

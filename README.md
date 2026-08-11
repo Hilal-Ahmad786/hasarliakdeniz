@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hasarlı Akdeniz
 
-## Getting Started
+Akdeniz Bölgesi hasarlı araç alım platformu — lead-generation sitesi + tam CRM/SEO/ads yönetim paneli. Next.js 16 (App Router), React 19, TypeScript strict, Tailwind v4, Drizzle ORM + Neon PostgreSQL.
 
-First, run the development server:
+## Özellikler
+
+- **Herkese açık site (TR):** ana sayfa, teklif al, hizmet sayfaları (`/arac-alimi/[slug]`), şehir/ilçe SEO sayfaları (`/hizmet-bolgeleri`), blog, rehberler, SSS, yasal sayfalar, site içi arama, RSS, sitemap, llms.txt.
+- **Admin paneli (`/admin`):** lead/CRM yönetimi, alıcılar, teklifler, anlaşmalar, finans, çağrı & WhatsApp kayıtları, içerik (CMS) + medya, SEO araçları, analitik & funnel, reklam harcaması, tıklama koruması (click-fraud), kullanıcılar (RBAC), denetim kaydı, ayarlar.
+- **İzleme:** GTM/GA4/Google Ads/Clarity (consent-gated), reklam tıklama takibi, tıklama koruması skorlama + cron.
+
+## Kurulum
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+cp .env.example .env.local   # değerleri doldurun
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Veritabanı (Neon PostgreSQL) bağlamak için `.env.local` içinde `DATABASE_URL` ayarlayın, ardından:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm db:migrate
+pnpm db:seed          # varsayılan ayarlar + süper admin (SEED_ADMIN_EMAIL / SEED_ADMIN_PASSWORD)
+pnpm db:seed:content  # örnek içerik
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`DATABASE_URL` yoksa site çalışır; formlar/panel veri kaydetmeden nazikçe düşer.
 
-## Learn More
+## Komutlar
 
-To learn more about Next.js, take a look at the following resources:
+- `pnpm dev` · `pnpm build` · `pnpm start`
+- `pnpm lint` · `pnpm typecheck` · `pnpm test`
+- `pnpm db:generate` · `pnpm db:migrate` · `pnpm db:push` · `pnpm db:studio`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Yapılandırma
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Marka, telefon (+90 552 567 71 64), WhatsApp, şehirler ve navigasyon `src/config/*` altında; canlıda Admin → Ayarlar üzerinden `site_settings` tablosu devralır. Tasarım tokenları `src/app/globals.css` (`@theme`) içinde — Akdeniz kimliği: derin deniz lacivert (primary), antrasit, sıcak kum yüzeyler, turunç-amber vurgu.

@@ -1,286 +1,147 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { Menu, X, Phone, MapPin, Wrench, MessageCircle } from "lucide-react";
-import { cities } from "@/data/cities";
+import { Phone, Menu, X } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { mainNav, routes } from "@/config/navigation";
+import { buttonClasses } from "@/components/ui/button";
+import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
+import { useSettings } from "@/components/providers/settings-provider";
+import { telHref, whatsappHref } from "@/lib/settings/shared";
+import { Logo } from "./logo";
 
-const BRAND_NAME = "Hasarlı Akdeniz";
-const PHONE_TEL = "+905369298606";
-const PHONE_DISPLAY = "0 (536) 929 86 06";
-const WHATSAPP_URL = "https://wa.me/905369298606";
-
-const SERVICES = [
-  { slug: "hasarli-arac-alan",       title: "Hasarlı Araç Alan" },
-  { slug: "kazali-arac-alan",        title: "Kazalı Araç Alan" },
-  { slug: "hurda-arac-alan",         title: "Hurda Araç Alan" },
-  { slug: "pert-arac-alan",          title: "Pert Araç Alan" },
-  { slug: "yanmis-arac-alan",        title: "Yanmış Araç Alan" },
-  { slug: "motor-arizali-arac-alan", title: "Motor Arızalı Araç Alan" },
-  { slug: "cekme-belgeli-arac-alan", title: "Çekme Belgeli Araç Alan" },
-];
-
-export default function Header() {
-  const [open, setOpen] = useState(false);
-  const [svcOpen, setSvcOpen] = useState(false);
-  const [cityOpen, setCityOpen] = useState(false);
+export function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+  const settings = useSettings();
+  const tel = telHref(settings);
 
-  // lock body scroll when drawer is open (mobile)
   useEffect(() => {
-    if (!open) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = prev; };
-  }, [open]);
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-  // close drawer on route change
-  useEffect(() => { setOpen(false); }, [pathname]);
+  const isActive = (href: string) =>
+    href === routes.home ? pathname === href : pathname.startsWith(href);
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-white/80 backdrop-blur border-b">
-      {/* 3 columns: brand | center nav | right CTAs */}
-      <div className="mx-auto max-w-7xl px-4 h-16 grid grid-cols-[auto_1fr_auto] items-center gap-4">
-        {/* Brand (left) */}
-        <Link href="/" className="flex items-center gap-3">
-          <span className="inline-block h-9 w-9 rounded-2xl" style={{ background: "#1e3a8a" }} aria-hidden />
-          <span className="font-semibold text-lg" style={{ color: "#1e3a8a" }}>
-            {BRAND_NAME}
-          </span>
-        </Link>
+    <header
+      className={cn(
+        "sticky top-0 z-50 bg-charcoal-950 text-white transition-shadow",
+        "border-b border-white/10",
+        scrolled && "shadow-[0_8px_30px_rgba(22,27,31,0.25)]",
+      )}
+    >
+      <div className="container-page flex h-16 items-center justify-between md:h-20">
+        <Logo brandName={settings.brandName} />
 
-        {/* Desktop nav (center) */}
-        <nav className="hidden md:flex items-center justify-center gap-6">
-          <Link href="/" className="text-slate-700 hover:text-slate-900 font-medium">
-            Anasayfa
-          </Link>
-
-          {/* Hizmetler dropdown */}
-          <div className="group relative">
-            <button className="text-slate-700 hover:text-slate-900 font-medium inline-flex items-center gap-2">
-              <Wrench className="h-4 w-4" /> Hizmetler
-            </button>
-            <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition
-                            absolute left-1/2 -translate-x-1/2 mt-3 w-72 rounded-2xl border bg-white shadow-lg p-2">
-              {SERVICES.map((s) => (
-                <Link
-                  key={s.slug}
-                  href={`/hizmetler/${s.slug}`}
-                  className="block rounded-xl px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
-                >
-                  {s.title}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Bölgeler dropdown */}
-          <div className="group relative">
-            <button className="text-slate-700 hover:text-slate-900 font-medium inline-flex items-center gap-2">
-              <MapPin className="h-4 w-4" /> Bölgeler
-            </button>
-            <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition
-                            absolute left-1/2 -translate-x-1/2 mt-3 max-h-[60vh] w-80 overflow-auto rounded-2xl border bg-white shadow-lg p-2">
-              {cities.map((c) => (
-                <Link
-                  key={c.slug}
-                  href={`/${c.slug}`}
-                  className="block rounded-xl px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
-                >
-                  {c.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <Link href="/hakkimizda" className="text-slate-700 hover:text-slate-900 font-medium">
-            Hakkımızda
-          </Link>
-          <Link href="/iletisim" className="text-slate-700 hover:text-slate-900 font-medium">
-            İletişim
-          </Link>
+        {/* Desktop nav */}
+        <nav aria-label="Ana menü" className="hidden items-center gap-1 lg:flex">
+          {mainNav.map((item) => {
+            const active = isActive(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={active ? "page" : undefined}
+                className={cn(
+                  "relative rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                  active ? "text-white" : "text-white/70 hover:text-white",
+                )}
+              >
+                {item.label}
+                {active && (
+                  <span className="absolute inset-x-3 -bottom-px h-0.5 rounded-full bg-gold-600" />
+                )}
+              </Link>
+            );
+          })}
         </nav>
 
-        {/* Right CTAs (desktop only) — aligned, no extra height */}
-        <div className="hidden md:flex items-center justify-end gap-3">
-          {/* Optional phone number text: uncomment if you want it visible
-          <a href={`tel:${PHONE_TEL}`} className="inline-flex items-center gap-2 text-[#1e3a8a] font-semibold"
-             aria-label={`Telefon: ${PHONE_DISPLAY}`}>
-            <Phone className="h-4 w-4" />
-            <span className="tracking-wide">{PHONE_DISPLAY}</span>
-          </a>
-          */}
+        {/* Desktop right: phone + CTA */}
+        <div className="hidden items-center gap-4 lg:flex">
           <a
-            href={`tel:${PHONE_TEL}`}
-            className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-white font-semibold shadow-sm"
-            style={{ background: "#ea580c" }}
-            aria-label={`Hemen Ara: ${PHONE_DISPLAY}`}
+            href={whatsappHref(settings)}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track="whatsapp_click"
+            data-track-location="header"
+            className="flex items-center gap-2.5 rounded-md px-2 py-1 transition-colors hover:bg-white/5"
           >
-            <Phone className="h-4 w-4" />
+            <span className="grid h-9 w-9 place-items-center rounded-full bg-whatsapp/15 text-whatsapp">
+              <WhatsAppIcon size={18} />
+            </span>
+            <span className="flex flex-col leading-tight">
+              <span className="text-[15px] font-bold">{settings.phoneDisplay}</span>
+              <span className="text-[11px] font-medium text-white/55">
+                WhatsApp · {settings.workingHours}
+              </span>
+            </span>
+          </a>
+          <a href={tel} data-track="phone_click" data-track-location="header" className={buttonClasses({ size: "md" })}>
+            <Phone size={16} />
             Hemen Ara
-          </a>
-          <a
-            href={WHATSAPP_URL}
-            className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-white font-semibold shadow-sm"
-            style={{ background: "#059669" }}
-            aria-label="WhatsApp ile yazın"
-            target="_blank" rel="noopener noreferrer"
-          >
-            <MessageCircle className="h-4 w-4" />
-            WhatsApp
           </a>
         </div>
 
-        {/* Mobile burger (only visible on small screens) */}
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="md:hidden justify-self-end inline-flex h-10 w-10 items-center justify-center rounded-lg border"
-          aria-label="Menüyü aç"
-        >
-          <Menu className="h-5 w-5" />
-        </button>
+        {/* Mobile right: phone icon + menu */}
+        <div className="flex items-center gap-1 lg:hidden">
+          <a
+            href={tel}
+            data-track="phone_click"
+            data-track-location="header_mobile"
+            aria-label="Bizi arayın"
+            className="grid h-11 w-11 place-items-center rounded-full bg-brand-700 text-white shadow-sm transition-colors hover:bg-brand-800"
+          >
+            <Phone size={22} strokeWidth={2.5} />
+          </a>
+          <button
+            type="button"
+            aria-label={menuOpen ? "Menüyü kapat" : "Menüyü aç"}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+            className="grid h-11 w-11 place-items-center rounded-full text-white hover:bg-white/8"
+          >
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile drawer */}
-      {open && (
-        <div className="md:hidden fixed inset-0 z-50">
-          {/* Scrim */}
-          <button
-            type="button"
-            aria-label="Kapat"
-            onClick={() => setOpen(false)}
-            className="absolute inset-0 bg-slate-900/40"
-          />
-          {/* Panel */}
-          <aside
-            className="absolute right-0 top-0 h-dvh w-[86%] max-w-[420px] bg-white shadow-xl
-                       flex flex-col pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]"
-            role="dialog" aria-modal="true"
-          >
-            <div className="flex items-center justify-between h-16 px-4 border-b">
-              <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-                <span className="inline-block h-9 w-9 rounded-2xl" style={{ background: "#1e3a8a" }} aria-hidden />
-                <span className="font-semibold text-lg" style={{ color: "#1e3a8a" }}>{BRAND_NAME}</span>
-              </Link>
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-lg border"
-                aria-label="Kapat"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      {menuOpen && (
+        <div className="border-t border-white/10 bg-charcoal-950 lg:hidden">
+          <nav aria-label="Mobil menü" className="container-page flex flex-col py-3">
+            {mainNav.map((item) => (
               <Link
-                href="/"
-                className="block rounded-2xl bg-slate-100 px-4 py-3 font-semibold text-[#1e3a8a]"
-                onClick={() => setOpen(false)}
-              >
-                Anasayfa
-              </Link>
-
-              {/* Hizmetler */}
-              <div className="rounded-2xl border p-4">
-                <button
-                  type="button"
-                  className="flex w-full items-center justify-between font-semibold"
-                  onClick={() => setSvcOpen((s) => !s)}
-                >
-                  <span className="inline-flex items-center gap-2">
-                    <Wrench className="h-5 w-5 text-slate-500" /> Hizmetler
-                  </span>
-                  <span className="text-slate-400">{svcOpen ? "▾" : "▸"}</span>
-                </button>
-                {svcOpen && (
-                  <ul className="mt-3 space-y-4">
-                    {SERVICES.map((s) => (
-                      <li key={s.slug}>
-                        <Link
-                          href={`/hizmetler/${s.slug}`}
-                          className="block text-lg text-slate-800"
-                          onClick={() => setOpen(false)}
-                        >
-                          {s.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                key={item.href}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                className={cn(
+                  "rounded-md px-3 py-3 text-[15px] font-medium",
+                  isActive(item.href)
+                    ? "bg-white/8 text-white"
+                    : "text-white/80 hover:bg-white/5",
                 )}
-              </div>
-
-              <Link
-                href="/hakkimizda"
-                className="block rounded-2xl border px-4 py-3 text-slate-800"
-                onClick={() => setOpen(false)}
               >
-                Hakkımızda
+                {item.label}
               </Link>
-
-              {/* Bölgeler */}
-              <div className="rounded-2xl border p-4">
-                <button
-                  type="button"
-                  className="flex w-full items-center justify-between font-semibold"
-                  onClick={() => setCityOpen((s) => !s)}
-                >
-                  <span className="inline-flex items-center gap-2">
-                    <MapPin className="h-5 w-5 text-slate-500" /> Bölgeler
-                  </span>
-                  <span className="text-slate-400">{cityOpen ? "▾" : "▸"}</span>
-                </button>
-                {cityOpen && (
-                  <ul className="mt-3 grid grid-cols-1 gap-3 max-h-[50vh] overflow-auto pr-1">
-                    {cities.map((c) => (
-                      <li key={c.slug}>
-                        <Link
-                          href={`/${c.slug}`}
-                          className="block rounded-xl px-3 py-2 text-slate-800 hover:bg-slate-50"
-                          onClick={() => setOpen(false)}
-                        >
-                          {c.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-
-              <Link
-                href="/iletisim"
-                className="block rounded-2xl border px-4 py-3 text-slate-800"
-                onClick={() => setOpen(false)}
-              >
-                İletişim
-              </Link>
-            </div>
-
-            {/* Drawer CTAs fixed at bottom with safe-area padding */}
-            <div className="border-t p-4 pb-[calc(env(safe-area-inset-bottom)+1rem)] flex flex-wrap gap-3">
-              <a
-                href={`tel:${PHONE_TEL}`}
-                className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl px-4 py-3 text-white font-semibold shadow-sm"
-                style={{ background: "#ea580c" }}
-                aria-label={`Hemen Ara: ${PHONE_DISPLAY}`}
-              >
-                <Phone className="h-5 w-5" />
-                Hemen Ara
-              </a>
-              <a
-                href={WHATSAPP_URL}
-                className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl px-4 py-3 text-white font-semibold shadow-sm"
-                style={{ background: "#059669" }}
-                aria-label="WhatsApp ile yazın"
-                target="_blank" rel="noopener noreferrer"
-              >
-                <MessageCircle className="h-5 w-5" />
-                WhatsApp
-              </a>
-            </div>
-          </aside>
+            ))}
+            <a
+              href={tel}
+              onClick={() => setMenuOpen(false)}
+              data-track="phone_click"
+              data-track-location="mobile_menu"
+              className={buttonClasses({ size: "lg", fullWidth: true, className: "mt-3" })}
+            >
+              <Phone size={18} />
+              Hemen Ara
+            </a>
+          </nav>
         </div>
       )}
     </header>
