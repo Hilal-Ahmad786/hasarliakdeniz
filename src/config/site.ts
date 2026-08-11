@@ -16,7 +16,7 @@ function env(key: string, fallback: string): string {
 
 export const siteConfig = {
   brandName: env("NEXT_PUBLIC_BRAND_NAME", "Hasarlı Akdeniz"),
-  brandTagline: "Akdeniz Bölgesi Hasarlı Araç Alım Merkezi",
+  brandTagline: "Akdeniz'in Hasarlı Araç Alım Noktası",
   domain: env("NEXT_PUBLIC_DOMAIN", "https://hasarliakdeniz.com"),
 
   // Contact — placeholders until confirmed. 0850 call number and WhatsApp

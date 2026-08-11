@@ -9,9 +9,9 @@ export function CategoryGrid() {
   return (
     <Section tone="cream">
       <SectionHeading
-        eyebrow="Hangi Araçları Alıyoruz?"
-        title="Her Türlü Hasarlı Aracı Değerlendiriyoruz"
-        intro="Aracınızın durumu ne olursa olsun değerini profesyonelce belirliyoruz. Kategorinizi seçin, sürece hemen başlayın."
+        eyebrow="Alım Kategorileri"
+        title="Dolu Hasarlısından Hurdasına, Her Araç Değerlendirilir"
+        intro="Kaza, dolu, sel, arıza veya yangın — aracınızın durumuna uyan kategoriyi seçin ve süreci başlatın."
       />
       <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
         {featuredServices.map((s) => (

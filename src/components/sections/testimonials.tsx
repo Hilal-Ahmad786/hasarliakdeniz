@@ -8,21 +8,21 @@ import { Section, SectionHeading } from "@/components/ui/section";
 const sampleTestimonials = [
   {
     quote:
-      "Kazada ağır hasar gören aracım için hızlıca dönüş aldım. Süreç baştan sona açık şekilde anlatıldı.",
-    name: "M. A.",
+      "Dolu yağışında aracımın kaputu ve tavanı göçüklerle dolmuştu. Fotoğrafları gönderdim; kısa sürede ne yapmam gerektiği net şekilde anlatıldı.",
+    name: "H. Y.",
     city: "Antalya",
   },
   {
     quote:
-      "Çalışmayan aracımı nasıl satacağımı bilmiyordum. Fotoğraf gönderdim, değerlendirme ve devir kısmında yardımcı oldular.",
-    name: "S. K.",
-    city: "Adana",
+      "Sağanakta otoparkı su basınca aracım çalışmaz hâle geldi. Değerlendirme ve belge adımlarında yol gösterdiler; hiçbir aşamada baskı hissetmedim.",
+    name: "D. Ö.",
+    city: "Mersin",
   },
   {
     quote:
-      "Noter ve ödeme adımları net planlandı. İletişim boyunca herhangi bir baskı hissetmedim.",
-    name: "E. T.",
-    city: "Mersin",
+      "Yazın hararet yapıp yolda kalan aracımın revizyon masrafı çok yüksekti. Teklif ve noter planı baştan açık konuşuldu, süreç sorunsuz tamamlandı.",
+    name: "B. Ç.",
+    city: "Adana",
   },
 ];
 
@@ -31,7 +31,7 @@ export function Testimonials() {
     <Section tone="cream">
       <SectionHeading
         eyebrow="Deneyimler"
-        title="Araç Sahipleri Ne Diyor?"
+        title="Süreci Yaşayanlardan"
         intro="Aşağıdaki yorumlar örnek niteliğindedir."
       />
       <div className="mt-10 grid gap-5 md:grid-cols-3">

@@ -4,18 +4,18 @@ import { Section, SectionHeading } from "@/components/ui/section";
 const steps = [
   {
     icon: FileText,
-    title: "Bilgilerinizi paylaşın",
-    desc: "Araç bilgilerini ve güncel fotoğrafları form veya WhatsApp üzerinden iletin.",
+    title: "Fotoğrafları gönderin",
+    desc: "Aracın ve hasarın net fotoğraflarını form ya da WhatsApp üzerinden iletin; araç yerinden oynamaz.",
   },
   {
     icon: SearchCheck,
-    title: "Değerlendirme ve teklif alın",
-    desc: "Uzman ekibimiz aracınızı değerlendirir ve size teklifimizi iletir.",
+    title: "Teklifinizi alın",
+    desc: "Aracınız durumuna göre değerlendirilir; teklif gerekçeleriyle iletilir ve sizi bağlamaz.",
   },
   {
     icon: Banknote,
-    title: "Noter, ödeme ve teslim",
-    desc: "Anlaşma sonrası noter devri, ödeme ve teslim süreci güvenle planlanır.",
+    title: "Noterde devri tamamlayın",
+    desc: "Anlaşma sonrası devir, ödeme ve teslim adımları resmi zeminde birlikte planlanır.",
   },
 ];
 
@@ -25,8 +25,8 @@ export function HowItWorks() {
     <Section tone="white">
       <SectionHeading
         eyebrow="Nasıl Çalışır?"
-        title="Aracınızı 3 Adımda Değerlendirin"
-        intro="Süreç açık ve anlaşılırdır. Her adımda sizi bilgilendiririz."
+        title="Üç Adımda Net Süreç"
+        intro="Başvurudan teslime kadar her adım baştan bellidir; sürpriz yoktur."
       />
       <div className="mt-12 grid gap-5 md:grid-cols-3">
         {steps.map((s, i) => (

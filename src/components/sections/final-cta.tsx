@@ -3,8 +3,8 @@ import { CtaGroup } from "./cta-buttons";
 
 /** Full-width navy conversion band with gold rules — no rounded card. */
 export function FinalCta({
-  title = "Aracınızın Değerini Öğrenmeye Hazır mısınız?",
-  subtitle = "Bilgilerinizi paylaşın, uzman ekibimiz sizi en kısa sürede arasın. Teklif almak ücretsizdir.",
+  title = "Aracınız Ne Durumda Olursa Olsun, Sormak Ücretsiz",
+  subtitle = "Fotoğrafları gönderin, ekibimiz kısa sürede dönüş yapsın. Teklif almak sizi hiçbir şekilde bağlamaz.",
 }: {
   title?: string;
   subtitle?: string;

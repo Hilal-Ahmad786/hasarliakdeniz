@@ -3,9 +3,9 @@ import { Section } from "@/components/ui/section";
 import { QuickOfferForm } from "@/components/forms/quick-offer-form";
 
 const trust = [
-  { icon: ShieldCheck, text: "Ücretsiz değerlendirme, bağlayıcı değil" },
-  { icon: Lock, text: "Bilgileriniz gizli ve güvenli tutulur" },
-  { icon: MapPin, text: "Akdeniz Bölgesi geneli başvuru kabul edilir" },
+  { icon: ShieldCheck, text: "Değerlendirme ücretsizdir ve sizi bağlamaz" },
+  { icon: Lock, text: "Bilgileriniz yalnızca talebiniz için kullanılır" },
+  { icon: MapPin, text: "Antalya'dan Hatay'a, bölge genelinden başvuru" },
 ];
 
 /**
@@ -15,8 +15,8 @@ const trust = [
  */
 export function QuoteSection({
   source,
-  title = "Aracınız İçin Ücretsiz Teklif Alın",
-  subtitle = "Birkaç bilgiyle değerlendirme talebi oluşturun. Uzman ekibimiz en kısa sürede sizinle iletişime geçer.",
+  title = "Fotoğrafları Gönderin, Değerlendirmeyle Başlayalım",
+  subtitle = "Birkaç bilgi ve birkaç net fotoğraf yeterli. Ekibimiz talebinizi inceleyip kısa sürede sizinle iletişime geçer.",
   tone = "alt",
 }: {
   source: string;

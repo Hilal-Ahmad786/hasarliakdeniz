@@ -18,15 +18,15 @@ import { JsonLd } from "@/components/ui/json-ld";
 import { homepageFaqs } from "@/config/faq";
 import { organizationLd, websiteLd, faqPageLd } from "@/lib/seo/jsonld";
 
-const homeTitle = "Hasarlı, Kazalı, Hurda Araç Alımı";
+const homeTitle = "Akdeniz'de Hasarlı ve Kazalı Araç Alımı";
 const homeDescription =
-  "Hasarlı, kazalı, pert, ağır hasarlı, arızalı, çalışmayan, yanmış, sel hasarlı, hurda ve çekme belgeli araç alımı. Akdeniz Bölgesi geneli ücretsiz değerlendirme.";
+  "Antalya, Mersin, Adana ve tüm Akdeniz'de hasarlı araç alan kurumsal ekip: kazalı, pert, dolu ve sel hasarlı, arızalı, hurda araçlar için ücretsiz değerlendirme.";
 
 export const metadata: Metadata = {
   title: homeTitle,
   description: homeDescription,
   keywords:
-    "hasarlı araç alan, kazalı araç alan, pert araç alan, hurda araç alan, hasarlı araç alımı",
+    "hasarlı araç alan, kazalı araç alan, pert araç alan, hasarlı araç alan antalya, hasarlı araç alan mersin, hasarlı araç alan adana",
   alternates: { canonical: routes.home },
   openGraph: {
     title: `${homeTitle} | ${siteConfig.brandName}`,
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
 };
 
 const heroPoints = [
-  { icon: BadgeCheck, label: "Ücretsiz değerlendirme", sub: "Teklif almak bağlayıcı değildir" },
-  { icon: Landmark, label: "Noter destekli işlem", sub: "Resmi ve kayıtlı devir süreci" },
-  { icon: Clock3, label: "Hızlı geri dönüş", sub: "Başvurunuza en kısa sürede dönüş" },
+  { icon: BadgeCheck, label: "Ücretsiz değerlendirme", sub: "Teklif sizi bağlamaz" },
+  { icon: Landmark, label: "Noter destekli devir", sub: "Resmi ve kayıtlı işlem planı" },
+  { icon: Clock3, label: "Bekletmeyen süreç", sub: "Talebinize kısa sürede dönüş" },
 ];
 
 /**
@@ -63,16 +63,16 @@ function Hero() {
       <div className="container-page grid items-center gap-10 py-14 md:py-18 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:py-24">
         <div>
           <p className="mb-4 inline-flex items-center gap-2 border-l-2 border-gold-600 pl-3 text-xs font-bold uppercase tracking-[0.16em] text-gold-600">
-            Akdeniz Bölgesi Araç Alım Hizmeti
+            Akdeniz'in Hasarlı Araç Alım Noktası
           </p>
           <h1 className="text-[34px] font-bold leading-[1.1] md:text-[46px] lg:text-[52px]">
-            Hasarlı Aracınız İçin{" "}
-            <span className="text-gold-600">Kurumsal Alım Süreci</span>
+            Hasarlı Aracınızı{" "}
+            <span className="text-gold-600">Net Bir Süreçle</span> Satın
           </h1>
           <p className="mt-5 max-w-[540px] text-[16px] leading-relaxed text-white/70 md:text-[18px]">
-            Kazalı, pert, arızalı, yanmış, sel hasarlı ve hurda araçlarınız
-            Akdeniz genelinde bulunduğunuz yerden değerlendirilir; noter devri
-            ve ödeme güvenle planlanır.
+            Dolu göçüğünden sel hasarına, kazadan motor arızasına — Antalya,
+            Mersin, Adana ve tüm bölgede aracınız bulunduğu yerden
+            değerlendirilir; noter ve ödeme adımları baştan net planlanır.
           </p>
 
           <CtaGroup className="mt-8" location="hero" />
@@ -126,8 +126,8 @@ export default function HomePage() {
       <Section tone="white">
         <SectionHeading
           eyebrow="Sık Sorulan Sorular"
-          title="Merak Edilenler"
-          intro="Araç satış süreci hakkında en çok sorulan sorular."
+          title="Aklınızdaki Sorular"
+          intro="Dolu hasarından noter devrine, süreçle ilgili en çok merak edilenler."
         />
         <div className="mt-10">
           <FaqAccordion items={homepageFaqs} />

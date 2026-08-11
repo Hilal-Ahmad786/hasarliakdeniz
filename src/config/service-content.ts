@@ -58,32 +58,32 @@ const RELATED_FALLBACK = [
 export const serviceContent: Record<string, ServiceContent> = {
   "hasarli-arac-alimi": {
     heroLead:
-      "Küçük çaplı hasarlardan ağır hasara kadar her durumdaki aracınız için değerlendirme talebi oluşturun.",
+      "Park hâlinde alınan bir darbeden dolu göçüğüne kadar, hasarlı aracınız Akdeniz genelinde yerinden değerlendirilir.",
     definition: [
-      "Hasarlı araç; kaza, darbe, doğal etken veya kullanım sonucu gövdesinde, mekanik aksamında ya da iç donanımında zarar oluşmuş araçları kapsar. Hasarın boyutu küçük çizik ve ezikten, gövdesel deformasyona kadar değişebilir.",
-      "Aracınızın hasar seviyesi ne olursa olsun, paylaştığınız bilgi ve fotoğraflara göre gerçekçi bir değerlendirme yapılır. Onarımı ekonomik olmayan araçlar için de süreç birlikte planlanır.",
+      "Hasarlı araç; kaza, darbe, doğal etken veya yoğun kullanım sonucu gövdesinde, mekanik aksamında ya da iç donanımında zarar oluşmuş aracı ifade eder. Akdeniz'de bu tabloya bölgeye özgü kalemler de eklenir: Antalya'da zaman zaman görülen dolu olaylarının bıraktığı kaporta göçükleri, kıyı şeridinde tuzlu havanın hızlandırdığı korozyon ve sert güneşin soldurduğu boya ile iç döşeme.",
+      "Hasarın kaynağı ve seviyesi ne olursa olsun, paylaştığınız bilgi ve fotoğraflara göre gerçekçi bir değerlendirme yapılır. Onarımı ekonomik görünmeyen araçlar için de süreç birlikte planlanır; teklif almak sizi bağlamaz.",
     ],
     whoFor: [
       "Onarım maliyeti aracın değerine yaklaşan araç sahipleri",
-      "Hasarlı aracını uğraşmadan satmak isteyenler",
+      "Dolu hasarı sonrası kaportayı yaptırmak istemeyenler",
       "Sigorta sürecini beklemeden değerlendirme isteyenler",
       "Hasar kaydı bulunan aracını satmak isteyenler",
     ],
     conditions: [
       "Çarpma veya darbe sonucu gövde hasarı",
-      "Boya, kaput, çamurluk veya tampon hasarı",
+      "Dolu kaynaklı kaput, tavan ve kaporta göçükleri",
+      "Boya solması ve kıyı kaynaklı yüzey korozyonu",
       "Cam, far veya stop hasarı",
-      "Onarımı ekonomik görünmeyen araçlar",
-      "Hasar kayıtlı araçlar",
+      "Onarımı ekonomik görünmeyen, hasar kayıtlı araçlar",
     ],
     faqs: [
       {
-        q: "Az hasarlı aracımı da değerlendiriyor musunuz?",
-        a: "Evet. Küçük çaplı hasarlar dâhil her seviyedeki araç için değerlendirme talebi oluşturabilirsiniz.",
+        q: "Dolu hasarı kaskodan karşılanmadıysa aracımı satabilir miyim?",
+        a: "Evet. Sigorta süreci nasıl sonuçlanmış olursa olsun, aracınızın mevcut durumu üzerinden değerlendirme talebi oluşturabilirsiniz.",
       },
       {
         q: "Hasar kaydı olan araç değer kaybeder mi?",
-        a: "Hasar kaydı değerlemeyi etkileyebilir; ancak nihai değerlendirme aracın bütününe göre yapılır. Şeffaf şekilde açıklanır.",
+        a: "Hasar kaydı değerlemeyi etkileyebilir; ancak nihai değerlendirme aracın bütününe göre yapılır ve gerekçeleriyle açıklanır.",
       },
     ],
     related: ["kazali-arac-alimi", "agir-hasarli-arac-alimi", "pert-arac-alimi"],
@@ -91,15 +91,15 @@ export const serviceContent: Record<string, ServiceContent> = {
 
   "kazali-arac-alimi": {
     heroLead:
-      "Trafik kazası geçirmiş aracınız için hızlı ve şeffaf bir değerlendirme alın.",
+      "İster şehir içinde ister D-400'de olsun, kaza geçirmiş aracınız için hızlı ve şeffaf bir değerlendirme alın.",
     definition: [
-      "Kazalı araç; trafik kazası sonucu ön, arka, yan veya çoklu bölgede hasar almış araçları ifade eder. Hava yastığının açıldığı, şaside deformasyon oluşan veya sürüş güvenliği etkilenen araçlar bu kapsamdadır.",
-      "Kazalı aracınızın onarımı yerine satmayı tercih ediyorsanız, mevcut durumuna göre değerlendirme yapılır ve devir süreci güvenle yürütülür.",
+      "Kazalı araç; trafik kazası sonucu ön, arka, yan veya birden fazla bölgede hasar almış aracı ifade eder. Akdeniz'de şehirler arası mesafelerin uzunluğu ve D-400 sahil yolundaki yoğun trafik, yüksek hızlı çarpışma hasarlarını; turizm sezonunda artan araç yoğunluğu ise şehir içi kazaları beraberinde getirir.",
+      "Hava yastığı açılmış, şasisi deformasyona uğramış veya sürüş güvenliği etkilenmiş araçlar da bu kapsamdadır. Onarım yerine satışı tercih ediyorsanız, aracınız mevcut durumuyla değerlendirilir ve devir güvenle planlanır.",
     ],
     whoFor: [
-      "Kaza sonrası onarımla uğraşmak istemeyenler",
+      "Kaza sonrası onarım sürecine girmek istemeyenler",
       "Hava yastığı açılmış araç sahipleri",
-      "Sürüş güvenliği etkilenmiş araçlar",
+      "Yüksek hızlı çarpışma sonrası ağır hasar oluşan araçlar",
       "Sigortayla anlaşamayan araç sahipleri",
     ],
     conditions: [
@@ -111,12 +111,12 @@ export const serviceContent: Record<string, ServiceContent> = {
     ],
     faqs: [
       {
-        q: "Hava yastığı açılan aracı alıyor musunuz?",
-        a: "Evet. Hava yastığı açılmış araçlar da değerlendirilir; durum fotoğraflarla netleştirildiğinde süreç hızlanır.",
+        q: "Kaza şehir dışında oldu; araç otoparkta bekliyor. Ne yapmalıyım?",
+        a: "Aracın bulunduğu konumu ve fotoğraflarını iletmeniz yeterli. Değerlendirme yerinden yapılır; taşıma seçenekleri konuma göre planlanır.",
       },
       {
-        q: "Kazalı aracım çalışmıyorsa ne olur?",
-        a: "Çalışmayan kazalı araçlar için de değerlendirme yapılır; teslim veya taşıma seçenekleri planlanır.",
+        q: "Hava yastığı açılan aracı alıyor musunuz?",
+        a: "Evet. Hava yastığı açılmış araçlar da değerlendirilir; durum fotoğraflarla netleştiğinde süreç hızlanır.",
       },
     ],
     related: ["hasarli-arac-alimi", "agir-hasarli-arac-alimi", "pert-arac-alimi"],
@@ -124,15 +124,15 @@ export const serviceContent: Record<string, ServiceContent> = {
 
   "pert-arac-alimi": {
     heroLead:
-      "Pert kayıtlı veya pert olması muhtemel araçlarınız için değerlendirme talebi oluşturun.",
+      "Pert kayıtlı veya pert olması muhtemel aracınız için belge durumuna uygun, planlı bir değerlendirme isteyin.",
     definition: [
-      "Pert araç; onarım maliyetinin aracın değerine yakın veya üzerinde olması nedeniyle ekonomik onarımı uygun görülmeyen araçtır. Sigorta tarafından pert (tam hasar) kaydı oluşturulmuş araçlar bu kapsamdadır.",
-      "Pert kayıtlı aracınızı satarken belge durumunun doğru ele alınması önemlidir. Süreç, kayıt durumuna göre şeffaf biçimde planlanır.",
+      "Pert araç; onarım maliyetinin aracın piyasa değerine yaklaşması veya onu aşması nedeniyle ekonomik onarımı uygun görülmeyen araçtır. Sigorta tarafından pert (tam hasar) kaydı oluşturulan araçlar bu kapsamda değerlendirilir.",
+      "Pert kayıtlı bir aracı satarken en kritik konu belge durumunun doğru ele alınmasıdır. Kaydın türüne göre devir adımları değişebilir; süreç Akdeniz genelinde, kayıt durumunuza göre şeffaf biçimde planlanır.",
     ],
     whoFor: [
       "Sigortaca pert işlemi yapılmış araç sahipleri",
       "Onarımı ekonomik olmayan araç sahipleri",
-      "Pert belgeli aracını satmak isteyenler",
+      "Pert belgeli aracını bekletmeden satmak isteyenler",
       "Hurdaya ayırmak yerine değerlendirmek isteyenler",
     ],
     conditions: [
@@ -140,16 +140,16 @@ export const serviceContent: Record<string, ServiceContent> = {
       "Onarım maliyeti yüksek araçlar",
       "Ağır gövde ve mekanik hasar",
       "Pert belgeli araçlar",
-      "Sular altında kalmış veya yanmış pert araçlar",
+      "Sel veya yangın sonrası pert işlemi görmüş araçlar",
     ],
     faqs: [
       {
         q: "Pert belgeli aracın devri nasıl yapılır?",
-        a: "Pert kayıt durumuna göre devir adımları değişebilir. Doğru ve resmi sürecin nasıl ilerleyeceği değerlendirme sırasında açıklanır.",
+        a: "Pert kaydının türüne göre devir adımları değişebilir. Doğru ve resmi sürecin nasıl ilerleyeceği değerlendirme sırasında açıklanır.",
       },
       {
-        q: "Pert aracın değeri nasıl belirlenir?",
-        a: "Aracın markası, modeli, hasar kapsamı ve kullanılabilir parçaları dikkate alınarak gerçekçi bir değerlendirme yapılır.",
+        q: "Pert aracın değeri neye göre belirlenir?",
+        a: "Marka, model, hasarın kapsamı ve kullanılabilir parçalar birlikte ele alınır; gerekçeleri açıklanan gerçekçi bir değerlendirme yapılır.",
       },
     ],
     related: ["agir-hasarli-arac-alimi", "kazali-arac-alimi", "hurda-arac-alimi"],
@@ -157,28 +157,28 @@ export const serviceContent: Record<string, ServiceContent> = {
 
   "agir-hasarli-arac-alimi": {
     heroLead:
-      "Ağır hasarlı aracınızı bulunduğu yerden değerlendiriyoruz.",
+      "Sürülemeyecek durumdaki aracınız, Antalya'dan Hatay'a bulunduğu yerden değerlendirilir.",
     definition: [
-      "Ağır hasarlı araç; gövdesinde, şasisinde veya ana mekanik aksamında ciddi düzeyde zarar oluşmuş, çoğu zaman sürülemeyecek durumdaki araçtır. Bu araçların onarımı genellikle ekonomik değildir.",
-      "Aracınız çekiciyle taşınması gereken durumda olsa bile değerlendirme talebi oluşturabilirsiniz; taşıma ve teslim seçenekleri konuma göre planlanır.",
+      "Ağır hasarlı araç; gövdesinde, şasisinde veya ana mekanik aksamında ciddi zarar oluşmuş, çoğu zaman kendi gücüyle hareket edemeyen araçtır. Uzun şehirler arası yollarda yüksek hızda yaşanan kazalar, bu kategorideki hasarların başlıca kaynağıdır.",
+      "Aracınız çekiciyle taşınması gereken durumda olsa bile başvuru oluşturabilirsiniz. Değerlendirme fotoğraflar üzerinden yapılır; taşıma ve teslim seçenekleri, aracın bulunduğu il ve ilçeye göre planlanır.",
     ],
     whoFor: [
       "Sürülemeyecek durumda ağır hasarlı araç sahipleri",
       "Şase / karoser hasarı olan araçlar",
       "Çoklu ve yaygın hasarlı araçlar",
-      "Taşıma gerektiren araç sahipleri",
+      "Aracı otoparkta veya serviste bekleyenler",
     ],
     conditions: [
       "Yaygın gövde ve şase hasarı",
       "Sürülemeyen, hareket etmeyen araçlar",
-      "Büyük çaplı çarpışma hasarı",
+      "Yüksek hızlı çarpışma sonucu büyük çaplı hasar",
       "Ana mekanik aksamı zarar görmüş araçlar",
       "Parça bütünlüğü bozulmuş araçlar",
     ],
     faqs: [
       {
-        q: "Sürülemeyen aracı nasıl teslim ederim?",
-        a: "Sürülemeyen araçlar için taşıma seçenekleri konuma göre planlanır ve değerlendirme sırasında sizinle netleştirilir.",
+        q: "Sürülemeyen aracımı nasıl teslim ederim?",
+        a: "Taşıma seçenekleri, aracın bulunduğu konuma göre planlanır ve değerlendirme sırasında sizinle netleştirilir; aracı bir yere götürmeniz gerekmez.",
       },
     ],
     related: ["pert-arac-alimi", "kazali-arac-alimi", "calismayan-arac-alimi"],
@@ -186,28 +186,28 @@ export const serviceContent: Record<string, ServiceContent> = {
 
   "motor-arizali-arac-alimi": {
     heroLead:
-      "Motor arızası bulunan aracınız için süreç planlaması yapın.",
+      "Hararet mi yaptı, motor mu bitti? Aracınızı onarım masrafına girmeden değerlendirin.",
     definition: [
-      "Motor arızalı araç; motor bloğu, silindir kapağı, turbo, enjeksiyon veya yağlama sistemi gibi ana motor bileşenlerinde sorun bulunan araçtır. Onarım maliyeti yüksek olabileceğinden satmak daha avantajlı olabilir.",
-      "Aracınızın motor arızası nedeniyle değer kaybetmesini önlemek için mevcut durumuna göre gerçekçi bir değerlendirme yapılır.",
+      "Motor arızalı araç; motor bloğu, silindir kapağı, turbo, enjeksiyon veya yağlama sistemi gibi ana bileşenlerde sorun bulunan araçtır. Akdeniz'in aşırı sıcak yazları bu tablonun bilinen bir nedenidir: Adana ve Mersin'de kırkı bulan sıcaklıklarda zorlanan soğutma sistemleri, hararet ve conta yanmasıyla sonuçlanabilir.",
+      "Revizyon maliyeti çoğu zaman beklenenin üzerine çıkar. Onarım yerine satışı düşünüyorsanız, aracınız mevcut durumu ve arızanın kapsamı üzerinden gerçekçi biçimde değerlendirilir.",
     ],
     whoFor: [
-      "Motoru çalışmayan veya tutuk çalışan araç sahipleri",
-      "Yüksek motor onarım maliyetiyle karşılaşanlar",
-      "Motoru hasar görmüş araç sahipleri",
+      "Hararet veya conta yanması yaşayan araç sahipleri",
+      "Yüksek motor revizyon maliyetiyle karşılaşanlar",
+      "Motoru çalışmayan veya tutuk çalışan araçlar",
       "Onarım yerine satışı tercih edenler",
     ],
     conditions: [
+      "Aşırı ısınma (hararet) ve soğutma sistemi arızası",
       "Çalışmayan veya zor çalışan motor",
-      "Aşırı ısınma veya yağ kaçağı sorunu",
+      "Yağ kaçağı veya yağ yakma sorunu",
       "Turbo, enjeksiyon veya yağlama arızası",
-      "Motor sesi veya performans kaybı",
       "Motor revizyonu gereken araçlar",
     ],
     faqs: [
       {
-        q: "Motoru hiç çalışmayan aracı değerlendiriyor musunuz?",
-        a: "Evet. Motoru çalışmayan araçlar için de değerlendirme talebi oluşturabilirsiniz.",
+        q: "Sıcaktan hararet yapıp yolda kalan aracımı değerlendiriyor musunuz?",
+        a: "Evet. Hararet sonrası çalışmayan veya güç kaybı yaşayan araçlar için de değerlendirme talebi oluşturabilirsiniz.",
       },
     ],
     related: ["mekanik-arizali-arac-alimi", "calismayan-arac-alimi", "hasarli-arac-alimi"],
@@ -215,28 +215,28 @@ export const serviceContent: Record<string, ServiceContent> = {
 
   "mekanik-arizali-arac-alimi": {
     heroLead:
-      "Mekanik arızalı, ekonomik onarımı zor araçlar için değerlendirme alın.",
+      "Şanzımandan klimaya, onarımı ekonomik olmayan arızalı araçlar için değerlendirme alın.",
     definition: [
-      "Mekanik arızalı araç; şanzıman, debriyaj, aktarma organları, fren, direksiyon veya elektronik sistemlerinde arıza bulunan araçtır. Birden fazla mekanik sorun bir arada bulunabilir.",
-      "Onarımı ekonomik olmayan mekanik arızalar nedeniyle aracınızı satmayı düşünüyorsanız, mevcut durumuna göre değerlendirme yapılır.",
+      "Mekanik arızalı araç; şanzıman, debriyaj, aktarma organları, fren, direksiyon veya elektronik sistemlerinde arıza bulunan araçtır. Sıcak iklimde elektronik aksam ve klima sistemi daha fazla zorlanır; birden fazla arızanın aynı araçta birikmesi bölgemizde az rastlanan bir durum değildir.",
+      "Biriken arızaların onarım maliyeti aracın değerini aşmaya başladıysa, aracınız mevcut hâliyle değerlendirilir ve süreç sizi yormadan planlanır.",
     ],
     whoFor: [
       "Şanzıman veya aktarma arızası olan araç sahipleri",
+      "Elektronik ve klima sorunları biriken araçlar",
+      "Onarım maliyeti değerine yaklaşan araçlar",
       "Çoklu mekanik arızası bulunan araçlar",
-      "Onarım maliyeti yüksek araç sahipleri",
-      "Elektronik / mekanik sorunları biriken araçlar",
     ],
     conditions: [
       "Şanzıman veya debriyaj arızası",
       "Aktarma organlarında sorun",
       "Fren veya direksiyon sistemi arızası",
-      "Elektronik sistem arızaları",
+      "Elektronik ve klima sistemi arızaları",
       "Çoklu mekanik sorun",
     ],
     faqs: [
       {
         q: "Birden fazla arızası olan aracı alıyor musunuz?",
-        a: "Evet. Çoklu mekanik arızası olan araçlar da değerlendirilir; durum fotoğraf ve açıklamayla netleştirilir.",
+        a: "Evet. Çoklu mekanik arızası olan araçlar da değerlendirilir; arızaları kısaca listelemeniz süreci hızlandırır.",
       },
     ],
     related: ["motor-arizali-arac-alimi", "calismayan-arac-alimi", "hasarli-arac-alimi"],
@@ -244,14 +244,14 @@ export const serviceContent: Record<string, ServiceContent> = {
 
   "calismayan-arac-alimi": {
     heroLead:
-      "Çalışmayan veya marş almayan aracınız için teklif talebi oluşturun.",
+      "Marş almayan ya da aylardır park hâlinde bekleyen aracınız için teklif talebi oluşturun.",
     definition: [
-      "Çalışmayan araç; motoru çalışmayan, marş almayan veya uzun süredir kullanılmadığı için hareket etmeyen araçtır. Arızanın kaynağı motor, elektrik veya mekanik kaynaklı olabilir.",
-      "Aracınızın neden çalışmadığını bilmeseniz dahi değerlendirme talebi oluşturabilirsiniz; gerekli durumlarda taşıma seçenekleri planlanır.",
+      "Çalışmayan araç; motoru çalışmayan, marş almayan veya uzun süredir kullanılmadığı için hareket etmeyen araçtır. Bölgemizde yazlık konutlarda ve site otoparklarında sezonluk bekleyen araçlar az değildir; sıcakta yıpranan aküler ve kuruyan contalar, bu araçların bir daha çalışmamasının sık nedenlerindendir.",
+      "Arızanın kaynağını bilmeseniz bile başvuru oluşturabilirsiniz. Araç yerinden değerlendirilir; gerekli durumlarda taşıma seçenekleri konuma göre planlanır.",
     ],
     whoFor: [
       "Marş almayan araç sahipleri",
-      "Uzun süredir çalışmayan / bekleyen araçlar",
+      "Otoparkta veya bahçede uzun süredir bekleyen araçlar",
       "Hareket etmeyen araç sahipleri",
       "Arıza kaynağı belirsiz araçlar",
     ],
@@ -265,7 +265,7 @@ export const serviceContent: Record<string, ServiceContent> = {
     faqs: [
       {
         q: "Aracımın neden çalışmadığını bilmiyorum, sorun olur mu?",
-        a: "Hayır. Arıza kaynağını bilmeseniz de değerlendirme talebi oluşturabilirsiniz.",
+        a: "Olmaz. Arıza kaynağını bilmeseniz de değerlendirme talebi oluşturabilirsiniz; fotoğraflar ve kısa bir açıklama yeterlidir.",
       },
     ],
     related: ["motor-arizali-arac-alimi", "mekanik-arizali-arac-alimi", "agir-hasarli-arac-alimi"],
@@ -273,16 +273,16 @@ export const serviceContent: Record<string, ServiceContent> = {
 
   "yanmis-arac-alimi": {
     heroLead:
-      "Yangın hasarı görmüş aracınız için değerlendirme talebi oluşturun.",
+      "Kısmi veya tam yangın hasarı görmüş aracınız için değerlendirme talebi oluşturun.",
     definition: [
-      "Yanmış araç; kısmi veya tam yangın sonucu gövdesi, iç donanımı veya motoru zarar görmüş araçtır. Yangının boyutuna göre aracın kullanılabilir parçaları değişir.",
-      "Yanmış aracınızın belge ve kayıt durumu, değerlendirme ve devir sürecinde önemli rol oynar. Süreç durumunuza göre şeffaf biçimde planlanır.",
+      "Yanmış araç; kısmi veya tam yangın sonucu gövdesi, iç donanımı veya motoru zarar görmüş araçtır. Kuru ve sıcak yaz aylarında elektrik tesisatı ile motor bölmesi kaynaklı araç yangınları bölgemizde de yaşanabilmektedir; yangının boyutuna göre aracın kullanılabilir parçaları değişir.",
+      "Yanmış araçlarda belge ve kayıt durumu sürecin belirleyici parçasıdır. Değerlendirme, aracın mevcut hâli ve belgeleri üzerinden şeffaf biçimde planlanır.",
     ],
     whoFor: [
       "Kısmi veya tam yanmış araç sahipleri",
       "Yangın sonrası pert işlemi yapılmış araçlar",
-      "Motor yangını geçiren araçlar",
-      "Yanmış aracını değerlendirmek isteyenler",
+      "Motor bölmesi yangını geçiren araçlar",
+      "Yanmış aracını bekletmeden değerlendirmek isteyenler",
     ],
     conditions: [
       "Motor bölmesi yangını",
@@ -294,7 +294,7 @@ export const serviceContent: Record<string, ServiceContent> = {
     faqs: [
       {
         q: "Tamamen yanmış aracı da değerlendiriyor musunuz?",
-        a: "Evet. Tam veya kısmi yanmış araçlar için değerlendirme talebi oluşturabilirsiniz.",
+        a: "Evet. Tam veya kısmi yanmış araçlar için değerlendirme talebi oluşturabilirsiniz; belge durumu süreçle birlikte netleştirilir.",
       },
     ],
     related: ["pert-arac-alimi", "hurda-arac-alimi", "agir-hasarli-arac-alimi"],
@@ -302,14 +302,14 @@ export const serviceContent: Record<string, ServiceContent> = {
 
   "sel-hasarli-arac-alimi": {
     heroLead:
-      "Sel ve su hasarı görmüş aracınız için süreç desteği alın.",
+      "Ani sağanakta su basan aracınızı bekletmeyin; su hasarı zamanla büyür, değerlendirme talebi ücretsizdir.",
     definition: [
-      "Sel hasarlı araç; sel, su baskını veya yoğun su teması sonucu motoru, elektroniği veya iç donanımı zarar görmüş araçtır. Su hasarı sonradan ortaya çıkan elektronik ve mekanik sorunlara yol açabilir.",
-      "Su hasarının kapsamına göre aracınızın durumu değerlendirilir; nem ve elektronik etkileri dikkate alınarak gerçekçi bir değerlendirme yapılır.",
+      "Sel hasarlı araç; sel, su baskını veya yoğun su teması sonucu motoru, elektroniği veya iç donanımı zarar görmüş araçtır. Akdeniz'de bu gerçek bir bölgesel kategoridir: Mersin ve Antalya'da kısa sürede düşen şiddetli yağışlar alt geçitleri ve site otoparklarını doldurabilir, dakikalar içinde araçlar suyla temas edebilir.",
+      "Su hasarının sinsi yanı, etkilerinin zamanla ortaya çıkmasıdır; nem, korozyon ve elektronik arızalar haftalar sonra baş gösterebilir. Bu nedenle değerlendirme, aracın mevcut durumu kadar olası etkiler de göz önünde tutularak yapılır.",
     ],
     whoFor: [
       "Sel veya su baskınından etkilenen araç sahipleri",
-      "İç mekânı su almış araçlar",
+      "Alt geçit veya otoparkta aracı su alan sürücüler",
       "Elektroniği su nedeniyle arızalanan araçlar",
       "Su hasarı sonrası pert işlemi yapılmış araçlar",
     ],
@@ -322,8 +322,12 @@ export const serviceContent: Record<string, ServiceContent> = {
     ],
     faqs: [
       {
-        q: "Su hasarı sonradan sorun çıkarır mı?",
-        a: "Su hasarı zamanla elektronik ve mekanik sorunlara yol açabilir. Bu nedenle değerlendirme, mevcut ve olası etkiler göz önünde tutularak yapılır.",
+        q: "Araç su bastıktan sonra çalıştı; yine de satmalı mıyım?",
+        a: "Karar sizindir; ancak su hasarı sonradan elektronik ve mekanik sorunlara yol açabilir. Değerlendirme talebi oluşturmak ücretsizdir ve sizi bağlamaz.",
+      },
+      {
+        q: "Selde kalan aracın sigorta süreci bitmeden başvurabilir miyim?",
+        a: "Evet. Değerlendirme talebi sigorta sürecinden bağımsızdır; belge durumunuza göre adımlar birlikte planlanır.",
       },
     ],
     related: ["pert-arac-alimi", "motor-arizali-arac-alimi", "hasarli-arac-alimi"],
@@ -331,21 +335,21 @@ export const serviceContent: Record<string, ServiceContent> = {
 
   "hurda-arac-alimi": {
     heroLead:
-      "Hurda ve ekonomik ömrünü tamamlamış aracınız için değerlendirme talebi oluşturun.",
+      "Ekonomik ömrünü doldurmuş aracınız için belgeli ve şeffaf bir süreç planlayın.",
     definition: [
-      "Hurda araç; ekonomik ömrünü tamamlamış, onarımı mümkün veya mantıklı olmayan, çoğunlukla parça ve metal değeri için değerlendirilen araçtır. Hurdaya ayırma ve trafikten çıkış işlemleri belgeli şekilde yürütülür.",
-      "Hurda aracınızın belge durumu ve hurda/çekme işlemleri sürecin önemli parçasıdır. Doğru ve resmi adımlar değerlendirme sırasında açıklanır.",
+      "Hurda araç; ekonomik ömrünü tamamlamış, onarımı mümkün veya mantıklı olmayan, çoğunlukla parça ve metal değeriyle ele alınan araçtır. Kıyı şeridinde tuzlu havanın hızlandırdığı korozyon, bölgemizde araçların hurda sınıfına daha erken girmesine neden olabilir.",
+      "Hurdaya ayırma ve trafikten çıkış işlemleri belgeli şekilde yürütülmesi gereken resmi adımlardır. Aracınızın belge durumuna göre doğru sıralama, değerlendirme sırasında açıkça anlatılır.",
     ],
     whoFor: [
       "Ekonomik ömrünü tamamlamış araç sahipleri",
-      "Onarımı mantıklı olmayan araçlar",
+      "Ağır korozyona uğramış araçlar",
       "Uzun süredir atıl bekleyen araçlar",
       "Hurdaya ayırmak isteyen araç sahipleri",
     ],
     conditions: [
       "Çok eski ve yıpranmış araçlar",
       "Onarımı ekonomik olmayan araçlar",
-      "Ağır korozyon / paslanma",
+      "Tuzlu hava kaynaklı ağır korozyon / paslanma",
       "Parçalanmış veya eksik araçlar",
       "Atıl durumda bekleyen araçlar",
     ],
@@ -360,10 +364,10 @@ export const serviceContent: Record<string, ServiceContent> = {
 
   "cekme-belgeli-arac-alimi": {
     heroLead:
-      "Çekme belgeli ve trafikten çekilmiş aracınız için teklif talebi oluşturun.",
+      "Çekme belgeli veya trafikten çekilmiş aracınız için belge durumuna uygun bir teklif isteyin.",
     definition: [
-      "Çekme belgeli araç; trafikten çekilmiş ve çekme belgesi düzenlenmiş, normal şartlarda trafiğe çıkışı uygun olmayan araçtır. Bu araçlar genellikle ağır hasarlı, arızalı veya kaydı kapatılmış araçlardır.",
-      "Çekme belgeli aracın devir ve değerlendirme süreci, belge durumuna göre özel olarak ele alınır ve şeffaf biçimde planlanır.",
+      "Çekme belgeli araç; trafikten çekilmiş ve çekme belgesi düzenlenmiş, normal şartlarda trafiğe çıkışı uygun olmayan araçtır. Bu araçlar genellikle ağır hasarlı, arızalı veya uzun süre kullanılmayacağı için trafikten çekilmiş araçlardır.",
+      "Çekme belgeli araçlarda devir, standart satıştan farklı adımlar içerir ve belge durumuna göre özel olarak ele alınır. Akdeniz genelinde başvuru kabul edilir; taşıma gereksinimi konuma göre planlanır.",
     ],
     whoFor: [
       "Çekme belgeli araç sahipleri",
@@ -381,7 +385,7 @@ export const serviceContent: Record<string, ServiceContent> = {
     faqs: [
       {
         q: "Çekme belgeli aracın devri nasıl yapılır?",
-        a: "Çekme belgeli araçlarda devir adımları belge durumuna göre değişir. Doğru ve resmi süreç değerlendirme sırasında açıklanır.",
+        a: "Devir adımları belge durumuna göre değişir. Doğru ve resmi sürecin nasıl ilerleyeceği değerlendirme sırasında size açıklanır.",
       },
     ],
     related: ["hurda-arac-alimi", "pert-arac-alimi", "agir-hasarli-arac-alimi"],

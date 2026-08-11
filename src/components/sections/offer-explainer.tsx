@@ -9,12 +9,12 @@ export function OfferExplainer() {
     {
       icon: ClipboardList,
       title: "İlk Değerlendirme",
-      desc: "Paylaştığınız araç bilgileri ve fotoğraflara göre yapılan ön değerlendirmedir. Hızlı bir fikir verir, bağlayıcı bir fiyat taahhüdü değildir.",
+      desc: "Fotoğraflarınıza ve verdiğiniz bilgilere dayanan ön görüştür. Size hızlı bir çerçeve çizer; ancak bağlayıcı bir fiyat taahhüdü değildir.",
     },
     {
       icon: SearchCheck,
       title: "Nihai Teklif",
-      desc: "Aracın ve belgelerin kontrolünün ardından netleşen tekliftir. Aracın gerçek durumu, ilk paylaşılan bilgilerle örtüştüğünde süreç hızla ilerler.",
+      desc: "Araç ve belgeler kontrol edildikten sonra netleşir. Paylaştığınız bilgiler gerçek durumla örtüştüğünde bu adım hızla tamamlanır.",
     },
   ];
   return (

@@ -29,9 +29,9 @@ export const guideCategories = [
 export const guides: Guide[] = [
   {
     slug: "hasarli-arac-satisi-bastan-sona",
-    title: "Hasarlı Araç Satışı: Başvurudan Teslime Kadar Tüm Süreç",
+    title: "Akdeniz'de Hasarlı Araç Satışı: Adım Adım Yol Haritası",
     description:
-      "Hasarlı aracınızı satarken izleyeceğiniz adımları başvurudan teslime kadar adım adım anlatan kapsamlı rehber.",
+      "Antalya'dan Hatay'a, hasarlı aracınızı satarken izleyeceğiniz yolu netleştiren pratik rehber: hazırlık, değerlendirme, noter ve teslim.",
     category: "Satış sürecine göre",
     estimatedTime: "10 dk",
     difficulty: "Kolay",
@@ -40,35 +40,35 @@ export const guides: Guide[] = [
     imageAlt: "Değerlendirme için hazırlanmış hasarlı araç",
     chapters: [
       {
-        title: "Süreç genel bakış",
+        title: "Sürece kuş bakışı",
         blocks: [
-          { type: "p", text: "Hasarlı araç satışı; bilgi paylaşımı, değerlendirme, teklif, noter ve teslim adımlarından oluşur. Bu rehberde her adımı sırasıyla ele alıyoruz." },
+          { type: "p", text: "Hasarlı araç satışı beş net adımdan oluşur: bilgi paylaşımı, değerlendirme, teklif, noter devri ve teslim. Aracınız Antalya'da bir sitenin otoparkında da bekliyor olsa, Adana'da bir sanayi sitesinde de dursa sıra değişmez; yalnızca teslim planı konuma göre şekillenir." },
         ],
       },
       {
-        title: "Araç bilgilerini hazırlayın",
+        title: "Araç bilgilerini toparlayın",
         blocks: [
-          { type: "p", text: "Marka, model, yıl, kilometre ve hasar durumu gibi temel bilgileri hazırlayın." },
-          { type: "ul", items: ["Ruhsat bilgileri", "Hasar/arıza açıklaması", "Varsa servis veya ekspertiz kayıtları"] },
+          { type: "p", text: "Marka, model, yıl ve kilometrenin yanında hasarın hikâyesini de kısaca not edin: kaza mı, dolu mu, su baskını mı, yoksa sıcaktan kaynaklı bir motor arızası mı? Akdeniz'de hasarın kaynağı çeşitlidir ve doğru anlatım değerlendirmeyi hızlandırır." },
+          { type: "ul", items: ["Ruhsat bilgileri", "Hasarın veya arızanın kısa açıklaması (kaza, dolu, sel, hararet vb.)", "Varsa servis, ekspertiz veya sigorta kayıtları"] },
         ],
       },
       {
-        title: "Aracı fotoğraflayın",
+        title: "Fotoğrafları doğru çekin",
         blocks: [
-          { type: "p", text: "Net ve aydınlık fotoğraflar değerlendirmeyi hızlandırır." },
-          { type: "ul", items: ["Dört yönden genel görünüm", "Hasarlı bölgelerin yakın çekimi", "Motor bölmesi ve iç mekân"] },
+          { type: "p", text: "Bölgemizde öğle güneşi çok sert olduğundan sabah veya ikindi saatlerinde, gölgelik bir yerde çekim yapın; parlama, dolu göçüklerini ve boya kusurlarını gizler." },
+          { type: "ul", items: ["Dört yönden genel görünüm", "Hasarlı bölgelerin yakın çekimi", "Motor bölmesi ve iç mekân", "Sel geçmişi varsa halı altı ve bagaj zemini"] },
         ],
       },
       {
-        title: "Değerlendirme talebi gönderin",
+        title: "Değerlendirme talebini gönderin",
         blocks: [
-          { type: "p", text: "Bilgileri ve fotoğrafları paylaşarak değerlendirme talebi oluşturun. Bu adım ücretsizdir ve sizi bağlamaz." },
+          { type: "p", text: "Bilgileri ve fotoğrafları form veya WhatsApp üzerinden iletin. Bu adım ücretsizdir, sizi bağlamaz ve aracınızı yerinden oynatmanızı gerektirmez." },
         ],
       },
       {
-        title: "Noter ve teslim",
+        title: "Noter, ödeme ve teslim",
         blocks: [
-          { type: "p", text: "Anlaşma sağlandığında noter devri ve ödeme adımları planlanır; ardından teslim veya taşıma gerçekleştirilir." },
+          { type: "p", text: "Anlaşma sağlandığında devir, bulunduğunuz ile uygun bir noterde resmi olarak tamamlanır; ödeme adımları devir planıyla birlikte netleştirilir. Çalışmayan araçlar için çekici ve taşıma seçenekleri konuma göre planlanır — ister Mersin sahilinde ister Isparta'da olun." },
           { type: "note", text: "Bu rehber genel bilgilendirme amaçlıdır; hukuki tavsiye niteliği taşımaz." },
         ],
       },
@@ -77,9 +77,9 @@ export const guides: Guide[] = [
   },
   {
     slug: "arac-fotografi-nasil-cekilir",
-    title: "Değerlendirme İçin Araç Fotoğrafı Nasıl Çekilir?",
+    title: "Güney Güneşinde Araç Fotoğrafı Çekmenin Püf Noktaları",
     description:
-      "Aracınızın değerini doğru yansıtan fotoğraflar çekmek için pratik bir kontrol listesi.",
+      "Sert Akdeniz ışığında hasarı doğru gösteren, değerlendirmeyi hızlandıran fotoğraflar için kısa bir kontrol listesi.",
     category: "Belge ve hazırlık",
     estimatedTime: "5 dk",
     difficulty: "Kolay",
@@ -88,19 +88,20 @@ export const guides: Guide[] = [
     imageAlt: "Hasarlı aracın telefonla fotoğraflanması",
     chapters: [
       {
-        title: "Doğru ışık ve açı",
+        title: "Işığı doğru kullanın",
         blocks: [
-          { type: "p", text: "Gün ışığında, gölgesiz ve net fotoğraflar tercih edin. Aracın tamamı kadraja girsin." },
+          { type: "p", text: "Akdeniz güneşi öğle saatlerinde kaportada güçlü yansıma yapar; dolu göçükleri ve ince çizikler bu parlamada kaybolur. Sabah erken ya da ikindi sonrası, mümkünse gölgede çekim yapın ve aracın tamamını kadraja alın." },
         ],
       },
       {
-        title: "Çekilmesi gereken fotoğraflar",
+        title: "Çekim listesi",
         blocks: [
           { type: "ol", items: [
             "Ön, arka ve her iki yan görünüm",
-            "Hasarlı bölgelerin yakın çekimi",
+            "Hasarlı bölgelerin yakın çekimi (dolu göçüklerinde kaput ve tavanı hafif açıyla çekin)",
             "Motor bölmesi",
             "Gösterge paneli (kilometre görünecek şekilde)",
+            "Sel veya su teması varsa iç döşeme, halı altı ve bagaj zemini",
             "Şase numarası ve ruhsat",
           ] },
         ],

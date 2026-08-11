@@ -1,10 +1,10 @@
 import { MapPin, BadgeCheck, ShieldCheck, Landmark } from "lucide-react";
 
 const items = [
-  { icon: MapPin, label: "Akdeniz Bölgesi geneli hizmet", sub: "Bulunduğunuz yerden başvuru" },
-  { icon: BadgeCheck, label: "Ücretsiz değerlendirme", sub: "Teklif almak bağlayıcı değil" },
-  { icon: ShieldCheck, label: "Güvenli ödeme", sub: "Şeffaf ve kayıtlı süreç" },
-  { icon: Landmark, label: "Noter destekli işlem", sub: "Resmi devir planlaması" },
+  { icon: MapPin, label: "Antalya'dan Hatay'a hizmet", sub: "Aracınız yerinden değerlendirilir" },
+  { icon: BadgeCheck, label: "Ücretsiz değerlendirme", sub: "Teklif sizi bağlamaz" },
+  { icon: ShieldCheck, label: "Şeffaf süreç", sub: "Kayıtlı devir ve ödeme" },
+  { icon: Landmark, label: "Noter destekli devir", sub: "Resmi işlem planı" },
 ];
 
 /** Structural navy assurance band directly under the dark hero. */

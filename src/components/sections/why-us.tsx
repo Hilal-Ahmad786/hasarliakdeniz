@@ -9,12 +9,12 @@ import {
 import { Section, SectionHeading } from "@/components/ui/section";
 
 const benefits = [
-  { icon: MessageCircle, title: "Açık ve hızlı iletişim", desc: "Telefon ve WhatsApp ile sürecin her adımında size ulaşılır." },
-  { icon: CarFront, title: "Araca özel değerlendirme", desc: "Her araç durumuna göre ayrı ve gerçekçi şekilde değerlendirilir." },
-  { icon: ShieldCheck, title: "Güvenli resmi süreç", desc: "Devir ve ödeme adımları kayıtlı ve şeffaf biçimde yürütülür." },
-  { icon: MapPin, title: "Akdeniz Bölgesi geneli başvuru", desc: "Bulunduğunuz ilden değerlendirme talebi oluşturabilirsiniz." },
-  { icon: Landmark, title: "Noter sürecinde destek", desc: "Noter ve devir işlemlerinde adım adım yönlendirme sağlanır." },
-  { icon: Clock3, title: "Hızlı geri dönüş", desc: "Talebiniz ulaştığında uzman ekibimiz sizinle iletişime geçer." },
+  { icon: MessageCircle, title: "Net iletişim", desc: "Telefon ve WhatsApp üzerinden her adımda açık bilgilendirme yapılır." },
+  { icon: CarFront, title: "Bölge koşullarına hâkim değerlendirme", desc: "Dolu göçüğü, sel teması ve sıcaklık kaynaklı arızalar dâhil her durum ayrı ele alınır." },
+  { icon: ShieldCheck, title: "Kayıtlı ve şeffaf işlem", desc: "Devir ve ödeme adımları resmi zeminde, açık şekilde yürütülür." },
+  { icon: MapPin, title: "Antalya'dan Hatay'a hizmet", desc: "Sahilden iç kesimlere, Akdeniz genelinde yerinden başvuru alınır." },
+  { icon: Landmark, title: "Noter sürecinde yönlendirme", desc: "Randevu, belge ve devir adımlarında yanınızda oluruz." },
+  { icon: Clock3, title: "Bekletmeyen süreç", desc: "Talebiniz ulaştığında ekibimiz kısa sürede sizinle iletişime geçer." },
 ];
 
 /** White editorial benefits — navy icon tiles, ruled list, no dark block. */
@@ -22,9 +22,9 @@ export function WhyUs() {
   return (
     <Section tone="alt">
       <SectionHeading
-        eyebrow="Neden Biz?"
-        title="Güvenilir, Hızlı ve Profesyonel Hizmet"
-        intro="Aracınızı birlikte değerlendirelim; süreci açık ve güvenli şekilde yönetelim."
+        eyebrow="Neden Hasarlı Akdeniz?"
+        title="Bölgesini Tanıyan Kurumsal Alım"
+        intro="Akdeniz'in yolunu, iklimini ve hasar profilini bilen bir ekiple, süreci baştan sona net yönetin."
       />
       <div className="mt-12 grid gap-px overflow-hidden rounded-[8px] border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
         {benefits.map((b) => (
