@@ -17,24 +17,24 @@ const benefits = [
   { icon: Clock3, title: "Hızlı geri dönüş", desc: "Talebiniz ulaştığında uzman ekibimiz sizinle iletişime geçer." },
 ];
 
+/** White editorial benefits — navy icon tiles, ruled list, no dark block. */
 export function WhyUs() {
   return (
-    <Section tone="charcoal">
+    <Section tone="alt">
       <SectionHeading
         eyebrow="Neden Biz?"
         title="Güvenilir, Hızlı ve Profesyonel Hizmet"
         intro="Aracınızı birlikte değerlendirelim; süreci açık ve güvenli şekilde yönetelim."
-        tone="light"
       />
-      <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-12 grid gap-px overflow-hidden rounded-[8px] border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
         {benefits.map((b) => (
-          <div key={b.title} className="flex gap-4">
-            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-[12px] border border-white/12 text-gold-600">
+          <div key={b.title} className="flex gap-4 bg-white p-6">
+            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-[6px] bg-brand-800 text-gold-600">
               <b.icon size={24} strokeWidth={1.8} />
             </span>
             <div>
-              <h3 className="text-base font-semibold text-white">{b.title}</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-white/65">{b.desc}</p>
+              <h3 className="text-base font-semibold text-ink">{b.title}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">{b.desc}</p>
             </div>
           </div>
         ))}

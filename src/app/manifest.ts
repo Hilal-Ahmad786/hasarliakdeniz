@@ -9,8 +9,8 @@ export default function manifest(): MetadataRoute.Manifest {
       "Hasarlı, kazalı, arızalı ve çalışmayan araçlar için Akdeniz Bölgesi geneli değerlendirme.",
     start_url: "/",
     display: "standalone",
-    background_color: "#f8f4ed",
-    theme_color: "#161b1f",
+    background_color: "#f8f5ef",
+    theme_color: "#174c88",
     lang: "tr",
     icons: [
       { src: "/images/logo/favicon.png", sizes: "512x512", type: "image/png" },

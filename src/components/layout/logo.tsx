@@ -1,12 +1,12 @@
 import Link from "next/link";
-import Image from "next/image";
+import { Anchor } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/config/site";
 
 /**
- * Brand logo image. `surface` selects the matching artwork:
- *  - "dark"  (charcoal header/footer) → dark-logo (light artwork on dark bg)
- *  - "light" (cream/white surfaces)    → light-logo (dark artwork on light bg)
+ * Brand wordmark — drawn in code (no image asset): a sharp navy anchor badge
+ * with a gold corner accent plus the stacked "Hasarlı Akdeniz" wordmark.
+ * `surface` adapts text colors to dark or light backgrounds.
  */
 export function Logo({
   surface = "dark",
@@ -17,22 +17,39 @@ export function Logo({
   className?: string;
   brandName?: string;
 }) {
-  const src = surface === "dark" ? "/images/logo/dark-logo.png" : "/images/logo/light-logo.png";
+  const [first, ...rest] = brandName.split(" ");
+  const second = rest.join(" ") || "Akdeniz";
   return (
     <Link
       href="/"
       aria-label={`${brandName} ana sayfa`}
-      className={cn("inline-flex items-center", className)}
+      className={cn("inline-flex items-center gap-2.5", className)}
     >
-      <Image
-        src={src}
-        alt={brandName}
-        width={318}
-        height={50}
-        priority
-        sizes="(max-width: 768px) 170px, 260px"
-        className="h-8 w-auto sm:h-10 md:h-12"
-      />
+      <span className="relative grid h-10 w-10 shrink-0 place-items-center rounded-[8px] bg-brand-800 text-white md:h-11 md:w-11">
+        <Anchor size={21} strokeWidth={2.1} />
+        <span className="absolute -right-1 -bottom-1 h-3 w-3 rounded-[3px] bg-gold-600" />
+      </span>
+      <span className="flex flex-col leading-none">
+        <span
+          className={cn(
+            "text-[16px] font-bold uppercase tracking-[0.04em] md:text-[18px]",
+            surface === "light" ? "text-white" : "text-ink",
+          )}
+        >
+          {first}{" "}
+          <span className={surface === "light" ? "text-gold-600" : "text-brand-700"}>
+            {second}
+          </span>
+        </span>
+        <span
+          className={cn(
+            "mt-1 text-[9.5px] font-semibold uppercase tracking-[0.22em]",
+            surface === "light" ? "text-white/60" : "text-ink-muted",
+          )}
+        >
+          Hasarlı Araç Alım Merkezi
+        </span>
+      </span>
     </Link>
   );
 }

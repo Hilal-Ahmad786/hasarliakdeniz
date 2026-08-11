@@ -58,7 +58,7 @@
   --color-primary: var(--color-brand-700);
 
   /* ---- Typography ---- */
-  --font-sans: var(--font-manrope), "Inter", Arial, sans-serif;
+  --font-sans: var(--font-sora), "Inter", Arial, sans-serif;
 
   /* ---- Radius (design.md §8) ---- */
   --radius-sm: 8px;

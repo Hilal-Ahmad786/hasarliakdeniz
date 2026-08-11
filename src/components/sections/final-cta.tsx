@@ -1,6 +1,7 @@
 import { Section } from "@/components/ui/section";
 import { CtaGroup } from "./cta-buttons";
 
+/** Full-width navy conversion band with gold rules — no rounded card. */
 export function FinalCta({
   title = "Aracınızın Değerini Öğrenmeye Hazır mısınız?",
   subtitle = "Bilgilerinizi paylaşın, uzman ekibimiz sizi en kısa sürede arasın. Teklif almak ücretsizdir.",
@@ -9,8 +10,11 @@ export function FinalCta({
   subtitle?: string;
 }) {
   return (
-    <Section tone="cream" className="pb-16 md:pb-20">
-      <div className="overflow-hidden rounded-[18px] bg-charcoal-950 px-6 py-12 text-center md:px-12 md:py-16">
+    <Section
+      tone="charcoal"
+      className="border-y-[3px] border-gold-600 bg-gradient-to-br from-brand-900 to-charcoal-950"
+    >
+      <div className="text-center">
         <h2 className="mx-auto max-w-2xl text-[26px] font-bold leading-tight text-white md:text-[34px]">
           {title}
         </h2>

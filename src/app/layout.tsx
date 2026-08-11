@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Sora } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
-const manrope = Manrope({
+const sora = Sora({
   subsets: ["latin", "latin-ext"], // latin-ext covers Turkish characters
   weight: ["400", "500", "600", "700"],
-  variable: "--font-manrope",
+  variable: "--font-sora",
   display: "swap",
 });
 
@@ -33,7 +33,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="tr" className={manrope.variable} suppressHydrationWarning>
+    <html lang="tr" className={sora.variable} suppressHydrationWarning>
       <body className="min-h-screen antialiased" suppressHydrationWarning>
         {children}
       </body>

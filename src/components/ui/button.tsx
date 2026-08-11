@@ -10,7 +10,7 @@ export type ButtonVariant =
 export type ButtonSize = "sm" | "md" | "lg";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-[10px] font-semibold " +
+  "inline-flex items-center justify-center gap-2 rounded-[6px] font-semibold " +
   "transition-colors duration-200 focus-visible:outline-none disabled:opacity-60 " +
   "disabled:pointer-events-none whitespace-nowrap select-none";
 

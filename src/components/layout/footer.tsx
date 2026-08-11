@@ -6,6 +6,11 @@ import { getPublicSettings } from "@/lib/settings/server";
 import { telHref, whatsappHref } from "@/lib/settings/shared";
 import { siteConfig } from "@/config/site";
 import { footerNav, routes } from "@/config/navigation";
+import { featuredServices } from "@/config/services";
+import { featuredCities } from "@/config/cities";
+import { Logo } from "./logo";
+import { DevCredit } from "./dev-credit";
+import { CookiePreferencesButton } from "@/components/consent/cookie-preferences-button";
 
 const SOCIALS = [
   { key: "instagram", label: "Instagram", icon: InstagramIcon, href: siteConfig.social.instagram },
@@ -17,7 +22,7 @@ const SOCIALS = [
 
 function SocialLinks() {
   return (
-    <div className="mt-6 flex items-center gap-2.5">
+    <div className="mt-6 flex items-center gap-2">
       {SOCIALS.map(({ key, label, icon: Icon, href }) =>
         href ? (
           <a
@@ -27,7 +32,7 @@ function SocialLinks() {
             rel="noopener noreferrer"
             aria-label={label}
             title={label}
-            className="grid h-9 w-9 place-items-center rounded-full bg-white/8 text-white transition-colors hover:bg-gold-600 hover:text-charcoal-950"
+            className="grid h-9 w-9 place-items-center rounded-[6px] bg-white/8 text-white transition-colors hover:bg-gold-600 hover:text-brand-900"
           >
             <Icon size={17} />
           </a>
@@ -36,7 +41,7 @@ function SocialLinks() {
             key={key}
             aria-disabled="true"
             title={`${label} — Yakında`}
-            className="grid h-9 w-9 cursor-not-allowed place-items-center rounded-full bg-white/5 text-white/25"
+            className="grid h-9 w-9 cursor-not-allowed place-items-center rounded-[6px] bg-white/5 text-white/25"
           >
             <Icon size={17} />
           </span>
@@ -45,16 +50,11 @@ function SocialLinks() {
     </div>
   );
 }
-import { featuredServices } from "@/config/services";
-import { featuredCities } from "@/config/cities";
-import { Logo } from "./logo";
-import { DevCredit } from "./dev-credit";
-import { CookiePreferencesButton } from "@/components/consent/cookie-preferences-button";
 
 function FooterCol({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <h3 className="mb-4 text-sm font-bold uppercase tracking-wide text-white">
+      <h3 className="mb-4 border-l-2 border-gold-600 pl-3 text-sm font-bold uppercase tracking-wide text-white">
         {title}
       </h3>
       <ul className="space-y-2.5 text-sm">{children}</ul>
@@ -67,7 +67,7 @@ function FLink({ href, children }: { href: string; children: React.ReactNode }) 
     <li>
       <Link
         href={href}
-        className="text-white/65 transition-colors hover:text-white"
+        className="text-white/60 transition-colors hover:text-gold-600"
       >
         {children}
       </Link>
@@ -75,22 +75,23 @@ function FLink({ href, children }: { href: string; children: React.ReactNode }) 
   );
 }
 
+/** Deep-navy structural footer with gold column accents and contact panel. */
 export async function Footer() {
   const year = new Date().getFullYear();
   const settings = await getPublicSettings();
   return (
-    <footer className="bg-charcoal-950 text-white">
+    <footer className="bg-brand-900 text-white">
       <div className="container-page grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
-        {/* Brand */}
+        {/* Brand + bordered contact panel */}
         <div className="lg:col-span-4">
-          <Logo brandName={settings.brandName} />
+          <Logo surface="light" brandName={settings.brandName} />
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/60">
-            Hasarlı, kazalı, pert, arızalı, yanmış, sel hasarlı ve hurda
+            Akdeniz Bölgesi genelinde hasarlı, kazalı, pert, arızalı ve hurda
             araçlarınızı bulunduğunuz yerden değerlendiriyor; güvenli ve şeffaf
             bir süreç sunuyoruz.
           </p>
-          <div className="mt-6 space-y-3 text-sm">
-            <a href={telHref(settings)} data-track="phone_click" data-track-location="footer" className="flex items-center gap-3 text-white/80 hover:text-white">
+          <div className="mt-6 space-y-3 rounded-[8px] border border-white/12 p-5 text-sm">
+            <a href={telHref(settings)} data-track="phone_click" data-track-location="footer" className="flex items-center gap-3 font-semibold text-white hover:text-gold-600">
               <Phone size={18} className="text-gold-600" />
               {settings.phoneDisplay}
             </a>
@@ -149,9 +150,9 @@ export async function Footer() {
         </div>
       </div>
 
-      {/* Deep-brand primary lower band */}
-      <div className="bg-brand-900">
-        <div className="container-page flex flex-col gap-5 pt-5 pb-24 text-sm text-white/70 lg:pb-5">
+      {/* Charcoal legal band */}
+      <div className="bg-charcoal-950">
+        <div className="container-page flex flex-col gap-5 pt-5 pb-24 text-sm text-white/60 lg:pb-5">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <p>
               © {year} {settings.brandName}. Tüm hakları saklıdır.
