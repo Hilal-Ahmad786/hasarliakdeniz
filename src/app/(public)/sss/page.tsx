@@ -18,9 +18,9 @@ import { faqPageLd } from "@/lib/seo/jsonld";
 export const metadata: Metadata = {
   title: "Sık Sorulan Sorular",
   description:
-    "Hasarlı, kazalı, pert ve hurda araç satışı hakkında sık sorulan sorular: değerleme, ödeme, çekici, noter devri ve belge süreçleri hakkında bilgi alın.",
+    "Akdeniz Bölgesi'nde hasarlı araç satışı hakkında merak edilenler: nakit ödeme, ücretsiz çekici, pert kaydı, hurda belgesi ve noter devri sorularının cevapları.",
   keywords:
-    "hasarlı araç satış soruları, pert araç satışı, hurda belgesi, noter devri",
+    "akdeniz hasarlı araç satış soruları, antalya pert araç satışı, hurda belgesi, nakit araç alımı",
   alternates: { canonical: routes.faq },
 };
 
@@ -35,8 +35,8 @@ export default async function FaqPage() {
       <PageHero
         image="/images/heroes/4.png"
         eyebrow="Merak Ettikleriniz"
-        title="Araç Satış Süreci Hakkında Sık Sorulan Sorular"
-        description="Aradığınız cevabı bulamazsanız bizimle telefon veya WhatsApp üzerinden iletişime geçebilirsiniz."
+        title="Akdeniz'de Araç Satarken Merak Edilenler"
+        description="Ödeme, çekici, evrak ve devir: aklınıza gelebilecek tüm soruları cevapladık. Listede olmayan sorular için WhatsApp hattımız her zaman açık."
       />
 
       <Section tone="white">
@@ -46,10 +46,10 @@ export default async function FaqPage() {
       {/* Contact panel */}
       <Section tone="cream">
         <div className="mx-auto flex max-w-3xl flex-col items-center gap-5 rounded-[18px] border border-line bg-white p-8 text-center">
-          <h2 className="text-xl font-bold text-ink">Cevabınızı Bulamadınız mı?</h2>
+          <h2 className="text-xl font-bold text-ink">Farklı Bir Sorunuz mu Var?</h2>
           <p className="max-w-md text-[15px] leading-relaxed text-ink-secondary">
-            Uzman ekibimiz aracınızla ilgili sorularınızı yanıtlamaktan
-            memnuniyet duyar.
+            Aracınıza özel her durumu telefonda dakikalar içinde netleştirelim;
+            WhatsApp mesajlarına gün boyu hızlı dönüş yapıyoruz.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row">
             <a

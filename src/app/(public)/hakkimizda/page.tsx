@@ -15,16 +15,16 @@ export const metadata: Metadata = {
   description:
     "Hasarlı, kazalı, pert ve hurda araç alımında güvenilir çözüm ortağınız. Şeffaf değerlendirme, en yüksek fiyat, ücretsiz çekici ve anında nakit ödeme.",
   keywords:
-    "hasarlı araç alan firma, güvenilir araç alımı, hasarlı araç alım merkezi",
+    "akdeniz hasarlı araç alan firma, antalya güvenilir araç alımı, nakit araç alım",
   alternates: { canonical: routes.about },
 };
 
 const values = [
   { icon: ShieldCheck, title: "Güven", desc: "Kayıtlı ve resmi süreç; baskısız iletişim." },
-  { icon: Eye, title: "Şeffaflık", desc: "Değerlendirme ve teklif adımlarını açıkça paylaşırız." },
-  { icon: Zap, title: "Hızlı iletişim", desc: "Talebiniz ulaştığında en kısa sürede dönüş yapılır." },
-  { icon: BadgeCheck, title: "Profesyonellik", desc: "Her aracı durumuna göre uzmanca değerlendiririz." },
-  { icon: Scale, title: "Adil değerlendirme", desc: "Aracın gerçek durumuna dayalı gerçekçi değerleme." },
+  { icon: Eye, title: "Şeffaflık", desc: "Teklifin nasıl hesaplandığını rakamlarıyla gösteririz." },
+  { icon: Zap, title: "Hızlı iletişim", desc: "Başvurulara ortalama 30 dakika içinde yanıt veririz." },
+  { icon: BadgeCheck, title: "Profesyonellik", desc: "Akdeniz piyasasını bilen ekiple yerinde ekspertiz yaparız." },
+  { icon: Scale, title: "Adil değerlendirme", desc: "Rakamı aracın bugünkü fiili durumu belirler; başka hiçbir şey değil." },
 ];
 
 export default function AboutPage() {

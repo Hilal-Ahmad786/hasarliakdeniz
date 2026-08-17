@@ -14,7 +14,7 @@ import { FinalCta } from "@/components/sections/final-cta";
 export const metadata: Metadata = {
   title: "Blog — Araç Değerleme ve Satış Rehberi",
   description:
-    "Hasarlı araç satışı, pert ve ağır hasar, değerleme, noter ve devir konularında güncel yazılar.",
+    "Akdeniz'de hasarlı araç satmak isteyenler için pert kaydı, değerleme, noter ve nakit ödeme konularında yazılar.",
   keywords: blogMetaKeywords,
   alternates: { canonical: routes.blog },
 };
@@ -34,8 +34,8 @@ export default async function BlogListingPage() {
         image="/images/heroes/3.png"
         size="sm"
         eyebrow="Araç Satış ve Değerleme Rehberi"
-        title="Hasarlı Araç Satışı Hakkında Bilmeniz Gerekenler"
-        description="Değerleme, devir ve satış sürecine dair pratik bilgiler."
+        title="Araç Satışında İşinize Yarayacak Yazılar"
+        description="Pert kaydından noter devrine, satış sürecinin her adımı için pratik rehber yazılar."
       />
 
       {/* Featured */}

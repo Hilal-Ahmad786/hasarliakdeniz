@@ -11,7 +11,7 @@ export function ServiceAreas() {
       <SectionHeading
         eyebrow="Hizmet Bölgeleri"
         title="Akdeniz Bölgesi Genelinde Hizmetinizdeyiz"
-        intro="Konum ve araç durumuna göre hizmet planlaması yapılır. Şehrinizi seçerek başlayın."
+        intro="Akdeniz'in dokuz ilinde çekici ve ekspertiz ağımız hazır; ilinizi seçin, süreci başlatalım."
       />
       <ul className="mx-auto mt-9 flex max-w-3xl flex-wrap justify-center gap-2.5">
         {featuredCities.map((c) => (

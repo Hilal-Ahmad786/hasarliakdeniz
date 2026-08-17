@@ -25,28 +25,28 @@ export interface ServiceContent {
 }
 
 export const DEFAULT_EVALUATED = [
-  "Marka, model ve model yılı",
-  "Kilometre ve genel kullanım durumu",
-  "Hasar veya arızanın türü ve kapsamı",
-  "Aracın çalışır durumda olup olmadığı",
-  "Ruhsat ve belge durumu",
-  "Eksik veya değişmiş parçalar",
-  "Aracın bulunduğu il ve ilçe",
+  "Aracın markası, modeli ve yaşı",
+  "Güncel kilometre ve kullanım yoğunluğu",
+  "Hasarın yeri, türü ve büyüklüğü",
+  "Motorun çalışma durumu",
+  "Tramer kaydı ve belge eksikleri",
+  "Orijinal olmayan veya eksik parçalar",
+  "Akdeniz içindeki konumu (il/ilçe)",
 ];
 
 export const DEFAULT_PHOTOS = [
-  "Aracın ön, arka ve her iki yan görünümü",
-  "Hasarlı veya arızalı bölgelerin yakın çekimi",
-  "Motor bölmesi",
-  "İç mekân ve gösterge paneli (kilometre görünecek şekilde)",
-  "Şase numarası ve ruhsat bilgileri",
+  "Ön, arka ve iki yan cepheden genel kareler",
+  "Hasarın yakın plan detay çekimleri",
+  "Motor bölmesinin kaput açık fotoğrafı",
+  "Gösterge panelinde kilometre görünür bir kare",
+  "Ruhsatın ve şase numarasının net görüntüsü",
 ];
 
 export const DEFAULT_DOCUMENTS = [
-  "Araç ruhsatı",
-  "Kimlik bilgisi (yalnızca devir aşamasında)",
-  "Varsa ekspertiz veya servis kayıtları",
-  "Varsa çekme belgesi veya hasar kaydı belgesi",
+  "Araç tescil belgesi (ruhsat)",
+  "Devir randevusunda kimlik",
+  "Bakım ve ekspertiz raporları (elinizdeyse)",
+  "Tramer dökümü veya çekme belgesi (varsa)",
 ];
 
 const RELATED_FALLBACK = [

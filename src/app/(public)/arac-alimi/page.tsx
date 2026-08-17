@@ -31,8 +31,8 @@ export default function VehiclePurchaseHubPage() {
       <PageHero
         image="/images/heroes/2.png"
         eyebrow="Araç Alımı"
-        title="Her Durumdaki Araç İçin Alım Hizmeti"
-        description="Hasarlı, kazalı, arızalı veya çalışmayan; aracınızın durumu ne olursa olsun değerlendiriyoruz. Aşağıdan kategorinizi seçerek sürece başlayın."
+        title="Hangi Araç, Hangi Süreç?"
+        description="Her hasar türünün kendi değerleme mantığı vardır. Aracınızın durumunu seçin; o kategoriye özel süreci, evrakları ve nakit ödeme adımlarını görün."
       >
         <CtaGroup location="hero" />
       </PageHero>
@@ -44,7 +44,7 @@ export default function VehiclePurchaseHubPage() {
         <SectionHeading
           eyebrow="Araç Kategorileri"
           title="Hangi Araçları Alıyoruz?"
-          intro="Aşağıdaki tüm araç durumları için değerlendirme talebi oluşturabilirsiniz."
+          intro="Her kategorinin kendine ait değerleme süreci vardır; aracınıza uygun olanı seçin."
         />
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (

@@ -37,7 +37,7 @@ export default async function VehiclesWeBuyPage() {
         image="/images/heroes/3.png"
         eyebrow="Araç Türüne Göre Değerlendirme"
         title="Farklı Durumdaki Araçlar İçin Değerlendirme"
-        description="Aracınızın durumu ne olursa olsun değerini profesyonelce belirliyoruz. Aşağıdan kategorinizi seçerek sürece başlayın."
+        description="Kaporta hasarından yanmış araçlara kadar Akdeniz'de her durumu nakit değerlendiriyoruz. Aracınıza uygun kategoriye tıklayın, ayrıntılı süreci inceleyin."
       >
         <CtaGroup location="hero" />
       </PageHero>
@@ -49,7 +49,7 @@ export default async function VehiclesWeBuyPage() {
         <SectionHeading
           eyebrow="Hizmetlerimiz"
           title="Hangi Araçları Alıyoruz?"
-          intro="Aşağıdaki tüm araç durumları için değerlendirme talebi oluşturabilirsiniz."
+          intro="Bu listedeki her durum için nakit teklif verilir; kategoriye tıklayıp ayrıntıları görün."
         />
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (

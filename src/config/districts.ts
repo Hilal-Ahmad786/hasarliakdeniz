@@ -1,7 +1,8 @@
 /**
- * District seed data — curated set for major Akdeniz cities. A district page is
- * published only when it has unique approved content (master prompt) — so we
- * seed a curated set rather than auto-generating all districts.
+ * District seed data — only districts with real, standalone search demand and
+ * unique approved content (config/local-data.ts) get a page. Central districts
+ * that just duplicate their city page (Muratpaşa, Seyhan, Onikişubat, …) were
+ * pruned and 301-redirect to the city page (see next.config.ts).
  */
 export interface District {
   slug: string;
@@ -12,30 +13,35 @@ export interface District {
 export const districts: District[] = [
   // Antalya
   { slug: "kepez", name: "Kepez", citySlug: "antalya" },
-  { slug: "muratpasa", name: "Muratpaşa", citySlug: "antalya" },
   { slug: "konyaalti", name: "Konyaaltı", citySlug: "antalya" },
   { slug: "alanya", name: "Alanya", citySlug: "antalya" },
   { slug: "manavgat", name: "Manavgat", citySlug: "antalya" },
   { slug: "serik", name: "Serik", citySlug: "antalya" },
   // Adana
-  { slug: "seyhan", name: "Seyhan", citySlug: "adana" },
-  { slug: "yuregir", name: "Yüreğir", citySlug: "adana" },
-  { slug: "cukurova", name: "Çukurova", citySlug: "adana" },
   { slug: "ceyhan", name: "Ceyhan", citySlug: "adana" },
   // Mersin
-  { slug: "yenisehir", name: "Yenişehir", citySlug: "mersin" },
-  { slug: "mezitli", name: "Mezitli", citySlug: "mersin" },
-  { slug: "toroslar", name: "Toroslar", citySlug: "mersin" },
   { slug: "tarsus", name: "Tarsus", citySlug: "mersin" },
   // Hatay
   { slug: "antakya", name: "Antakya", citySlug: "hatay" },
   { slug: "iskenderun", name: "İskenderun", citySlug: "hatay" },
   { slug: "dortyol", name: "Dörtyol", citySlug: "hatay" },
-  // Kahramanmaraş
-  { slug: "onikisubat", name: "Onikişubat", citySlug: "kahramanmaras" },
-  { slug: "dulkadiroglu", name: "Dulkadiroğlu", citySlug: "kahramanmaras" },
-  // Isparta
-  { slug: "isparta-merkez", name: "Merkez", citySlug: "isparta" },
+];
+
+/**
+ * Pruned thin district pages → 301 to their city page (consumed by
+ * next.config.ts redirects()).
+ */
+export const prunedDistrictRedirects: { districtSlug: string; citySlug: string }[] = [
+  { districtSlug: "muratpasa", citySlug: "antalya" },
+  { districtSlug: "seyhan", citySlug: "adana" },
+  { districtSlug: "yuregir", citySlug: "adana" },
+  { districtSlug: "cukurova", citySlug: "adana" },
+  { districtSlug: "yenisehir", citySlug: "mersin" },
+  { districtSlug: "mezitli", citySlug: "mersin" },
+  { districtSlug: "toroslar", citySlug: "mersin" },
+  { districtSlug: "onikisubat", citySlug: "kahramanmaras" },
+  { districtSlug: "dulkadiroglu", citySlug: "kahramanmaras" },
+  { districtSlug: "isparta-merkez", citySlug: "isparta" },
 ];
 
 export function districtsOfCity(citySlug: string): District[] {

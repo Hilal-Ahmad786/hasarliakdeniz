@@ -31,20 +31,20 @@ export const metadata: Metadata = {
 };
 
 const steps = [
-  { icon: FileText, title: "Araç bilgilerini paylaşın", desc: "Marka, model, yıl, hasar/arıza durumu ve konum gibi temel bilgileri iletin.", user: "Temel araç bilgilerini girersiniz.", us: "Bilgileri inceleriz." },
-  { icon: Camera, title: "Güncel fotoğrafları gönderin", desc: "Aracın dış, iç ve hasarlı bölgelerinin fotoğraflarını paylaşın.", user: "Fotoğrafları form veya WhatsApp ile yüklersiniz.", us: "Görselleri değerlendiririz." },
-  { icon: SearchCheck, title: "İlk değerlendirme yapılır", desc: "Paylaştığınız bilgilere göre bir ön değerlendirme oluşturulur.", user: "Sorularımızı yanıtlarsınız.", us: "Ön değerlendirmeyi iletiriz." },
-  { icon: ClipboardCheck, title: "Gerekirse araç ve belge kontrolü", desc: "Bazı durumlarda aracın veya belgelerin kontrolü gerekebilir.", user: "Belgeleri hazırlarsınız.", us: "Kontrolü planlarız." },
-  { icon: Handshake, title: "Nihai teklif paylaşılır", desc: "Kontrol sonrası netleşen teklif sizinle paylaşılır.", user: "Teklifi değerlendirirsiniz.", us: "Net teklifi sunarız." },
-  { icon: Landmark, title: "Noter ve ödeme planı", desc: "Anlaşma sağlandığında noter devri ve ödeme adımları planlanır.", user: "Devir için hazır olursunuz.", us: "Süreci yönlendiririz." },
-  { icon: Truck, title: "Teslim veya taşıma", desc: "Konum ve araç durumuna göre teslim ya da taşıma planlanır.", user: "Teslim için uygunluk verirsiniz.", us: "Taşımayı koordine ederiz." },
-  { icon: Archive, title: "Satış sonrası kayıtların saklanması", desc: "İşlem kayıtları güvenli biçimde saklanır.", user: "—", us: "Kayıtları muhafaza ederiz." },
+  { icon: FileText, title: "Bilgileri gönderin", desc: "Marka, model, yıl ve hasar durumuyla birlikte aracın Akdeniz'de bulunduğu ili yazın; iki dakikanızı alır.", user: "Kısa formu doldurur veya WhatsApp'tan yazarsınız.", us: "Başvuruyu anında işleme alırız." },
+  { icon: Camera, title: "Fotoğraf paylaşın", desc: "Aracın dört yönden ve hasar bölgelerinden çekilmiş fotoğrafları teklifin temelini oluşturur.", user: "Telefonunuzla çekip gönderirsiniz.", us: "Uzman ekip görselleri inceler." },
+  { icon: SearchCheck, title: "30 dakikada ön teklif", desc: "Bilgiler eksiksizse ön değerlendirme ortalama yarım saat içinde size ulaşır.", user: "Teklifi beklersiniz.", us: "Hızlı ve gerekçeli dönüş yaparız." },
+  { icon: ClipboardCheck, title: "Araç yerinde görülür", desc: "Gerekli durumlarda aracınız bulunduğu adreste incelenir; sizi hiçbir yere çağırmayız.", user: "Uygun saati söylersiniz.", us: "Adresinize geliriz." },
+  { icon: Handshake, title: "Nakit teklif netleşir", desc: "İnceleme sonrası kesin rakam açıklanır; pazarlık payı ve gerekçeler açıkça anlatılır.", user: "Kabul veya red — karar sizin.", us: "Rakamın arkasında dururuz." },
+  { icon: Landmark, title: "Noterde devir, anında ödeme", desc: "Randevu bize ait; devir imzalanırken ödemenizi nakit veya hesabınıza alırsınız.", user: "Ruhsat ve kimlikle gelirsiniz.", us: "Evrak ve randevuyu hazırlarız." },
+  { icon: Truck, title: "Ücretsiz çekici", desc: "Çalışmayan araçlar bulunduğu yerden ücretsiz çekiciyle alınır; çalışanlar devirde teslim edilir.", user: "Aracın yerini gösterirsiniz.", us: "Çekiciyi biz gönderir, biz öderiz." },
+  { icon: Archive, title: "Kayıtlar saklanır", desc: "Satışın tüm belgeleri mevzuata uygun arşivlenir; sonradan ihtiyaç olursa ulaşabilirsiniz.", user: "—", us: "Arşivi güvenle tutarız." },
 ];
 
 const processFaqs = [
-  { q: "Süreç ne kadar sürer?", a: "Süre; aracın durumuna, belgelere ve konuma göre değişir. Net bir süre taahhüt etmiyoruz, ancak her adımda sizi bilgilendiririz." },
-  { q: "Teklifi kabul etmek zorunda mıyım?", a: "Hayır. Değerlendirme talebi oluşturmak ve teklif almak sizi bağlamaz; kararı siz verirsiniz." },
-  { q: "Aracım şehir dışındaysa ne olur?", a: "Konuma göre teslim veya taşıma seçenekleri planlanır ve süreç sizinle netleştirilir." },
+  { q: "Gerçekten aynı gün ödeme yapıyor musunuz?", a: "Evet. Ödeme, noterde devir işlemiyle eş zamanlı yapılır — nakit ya da tercihinize göre anında hesabınıza transfer. Devir tamamlanmadan sizden aracı teslim etmenizi istemeyiz." },
+  { q: "Çekici için benden ücret çıkar mı?", a: "Çıkmaz. Teklifi kabul ettiğiniz her araçta çekici, Akdeniz Bölgesi'nin neresinde olursa olsun tarafımızdan karşılanır." },
+  { q: "Antalya dışındayım, süreç benim için değişir mi?", a: "Değişmez. Adana, Mersin, Hatay ve diğer illerde de aynı adımlar işler; yalnızca randevu saatleri mesafeye göre planlanır." },
 ];
 
 export default function HowItWorksPage() {
@@ -55,8 +55,8 @@ export default function HowItWorksPage() {
       <PageHero
         image="/images/heroes/6.png"
         eyebrow="Şeffaf ve Kolay Süreç"
-        title="Aracınızı Satma Süreci Nasıl İlerler?"
-        description="Bilgilerinizi paylaşmaktan teslime kadar her adım açık ve anlaşılırdır. Süreç boyunca sizi bilgilendiririz."
+        title="Fotoğraftan Nakite: Sürecin Tamamı"
+        description="Akdeniz'de aracınızı satmak üç temel adımdan oluşur: fotoğraf gönderin, nakit teklifinizi alın, noterde devredin. Aradaki her detayı aşağıda görebilirsiniz."
       >
         <CtaGroup location="hero" />
       </PageHero>
@@ -104,11 +104,11 @@ export default function HowItWorksPage() {
             <IconList
               className="mt-6"
               items={[
-                "Araç ruhsatı ve temel araç bilgileri",
-                "Aracın güncel fotoğrafları",
-                "Hasar veya arıza hakkında kısa açıklama",
-                "Varsa ekspertiz / servis kayıtları",
-                "Varsa çekme belgesi veya hasar kaydı",
+                "Aracın ruhsatı ve plaka bilgisi",
+                "Telefonla çekilmiş güncel fotoğraflar",
+                "Hasarın nasıl oluştuğuna dair birkaç cümle",
+                "Bakım ve ekspertiz geçmişi (varsa)",
+                "Tramer dökümü veya çekme belgesi (varsa)",
               ]}
             />
           </div>
@@ -117,11 +117,11 @@ export default function HowItWorksPage() {
             <IconList
               className="mt-6"
               items={[
-                "Araç bilgilerinin ve fotoğrafların değerlendirilmesi",
-                "Gerçekçi ve şeffaf değerlendirme",
-                "Noter ve devir sürecinde yönlendirme",
-                "Ödeme adımlarının güvenli planlanması",
-                "Teslim veya taşımanın koordinasyonu",
+                "30 dakikada fotoğraf üzerinden ön teklif",
+                "Aracın adresinizde incelenmesi",
+                "Noter randevusu ve tüm evrak hazırlığı",
+                "Devir anında nakit veya hesaba ödeme",
+                "Ücretsiz çekici ile aracın teslim alınması",
               ]}
             />
           </div>

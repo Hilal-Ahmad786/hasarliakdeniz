@@ -28,8 +28,37 @@ const securityHeaders = [
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), browsing-topics=()" },
 ];
 
+// Thin district pages consolidated into their city page (SEO: avoids
+// doorway-style near-duplicates). Keep in sync with prunedDistrictRedirects
+// in src/config/districts.ts.
+const prunedDistricts: { districtSlug: string; citySlug: string }[] = [
+  { districtSlug: "muratpasa", citySlug: "antalya" },
+  { districtSlug: "seyhan", citySlug: "adana" },
+  { districtSlug: "yuregir", citySlug: "adana" },
+  { districtSlug: "cukurova", citySlug: "adana" },
+  { districtSlug: "yenisehir", citySlug: "mersin" },
+  { districtSlug: "mezitli", citySlug: "mersin" },
+  { districtSlug: "toroslar", citySlug: "mersin" },
+  { districtSlug: "onikisubat", citySlug: "kahramanmaras" },
+  { districtSlug: "dulkadiroglu", citySlug: "kahramanmaras" },
+  { districtSlug: "isparta-merkez", citySlug: "isparta" },
+];
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  images: {
+    formats: ["image/avif", "image/webp"],
+    remotePatterns: [
+      { protocol: "https", hostname: "*.public.blob.vercel-storage.com" },
+    ],
+  },
+  async redirects() {
+    return prunedDistricts.map((d) => ({
+      source: `/hizmet-bolgeleri/${d.citySlug}/${d.districtSlug}`,
+      destination: `/hizmet-bolgeleri/${d.citySlug}`,
+      permanent: true,
+    }));
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

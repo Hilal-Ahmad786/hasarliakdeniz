@@ -15,9 +15,9 @@ import { getCity } from "@/config/cities";
 export const metadata: Metadata = {
   title: "Hizmet Bölgeleri | Akdeniz Bölgesi",
   description:
-    "Akdeniz Bölgesi geneli hasarlı, kazalı, pert ve hurda araç alımı. Antalya, Adana, Mersin, Hatay ve tüm Akdeniz illerinde ücretsiz çekici ile bulunduğunuz yerden alım.",
+    "Antalya, Adana, Mersin, Hatay ve tüm Akdeniz illerinde hasarlı, kazalı, pert ve hurda araç alımı. İlinizi seçin; ücretsiz çekici ve nakit ödeme ile satın.",
   keywords:
-    "hasarlı araç alan şehirler, türkiye geneli araç alımı, hasarlı araç alan iller",
+    "akdeniz hasarlı araç alan iller, antalya hasarlı araç alan, akdeniz bölgesi araç alımı",
   alternates: { canonical: routes.serviceAreas },
 };
 
@@ -97,9 +97,28 @@ export default function ServiceAreasPage() {
                 {list.map((c) => (
                   <li key={c.slug}>
                     {c.published ? (
-                      <Link href={routes.city(c.slug)} className="text-[15px] text-ink hover:text-brand-700">
-                        {c.name}
-                      </Link>
+                      <>
+                        <Link href={routes.city(c.slug)} className="text-[15px] text-ink hover:text-brand-700">
+                          {c.name}
+                        </Link>
+                        {districts.some((d) => d.citySlug === c.slug) && (
+                          <span className="ml-2 text-[13px] text-ink-muted">
+                            {districts
+                              .filter((d) => d.citySlug === c.slug)
+                              .map((d, i) => (
+                                <span key={d.slug}>
+                                  {i > 0 && " · "}
+                                  <Link
+                                    href={routes.district(c.slug, d.slug)}
+                                    className="hover:text-brand-700"
+                                  >
+                                    {d.name}
+                                  </Link>
+                                </span>
+                              ))}
+                          </span>
+                        )}
+                      </>
                     ) : (
                       <span className="text-[15px] text-ink-muted">
                         {c.name} <span className="text-xs">(yakında)</span>

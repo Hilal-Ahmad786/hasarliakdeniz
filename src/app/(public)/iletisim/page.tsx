@@ -35,7 +35,7 @@ export default async function ContactPage() {
         image="/images/heroes/1.png"
         eyebrow="Bize Ulaşın"
         title="Aracınızı Birlikte Değerlendirelim"
-        description="Aracınız veya süreç hakkında her türlü sorunuz için aşağıdaki kanallardan bize ulaşabilirsiniz."
+        description="Telefon, WhatsApp veya e-posta — hangisi sizin için kolaysa oradan yazın; Akdeniz genelindeki başvurulara gün içinde dönüyoruz."
       />
 
       {/* Contact method cards */}

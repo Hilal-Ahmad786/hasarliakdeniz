@@ -36,7 +36,7 @@ export default async function GetOfferPage() {
         size="sm"
         eyebrow="Ücretsiz Araç Değerlendirmesi"
         title="Aracınız İçin Değerlendirme Talebi Oluşturun"
-        description="Araç, hasar, konum ve iletişim bilgilerinizi adım adım paylaşın. Bilgileriniz yalnızca değerlendirme amacıyla kullanılır."
+        description="Birkaç dakikada formu doldurun; aracınızın bilgileri yalnızca teklif hazırlamak için kullanılır ve 30 dakika içinde dönüş hedeflenir."
       />
 
       <Section tone="white">
